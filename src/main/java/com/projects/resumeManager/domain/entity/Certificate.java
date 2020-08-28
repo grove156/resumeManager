@@ -1,9 +1,8 @@
-package com.projects.resumeManager.domain;
+package com.projects.resumeManager.domain.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,35 +11,28 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-public class User {
+public class Certificate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    private String email;
-
-    @NotEmpty
-    private String firstName;
-
-    @NotEmpty
-    private String lastName;
+    private String score;
 
     @NotNull
-    private LocalDate dateOfBirth;
+    private LocalDate issuedAt;
 
-    @NotNull
-    private Integer phoneNumber;
+    private String validDuration;
 
     @NotNull
     private LocalDateTime createdAt;
 
+    @NotNull
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "certificate")
     private List<Resume> resumeList;
 }

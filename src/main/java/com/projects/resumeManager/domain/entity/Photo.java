@@ -1,4 +1,4 @@
-package com.projects.resumeManager.domain;
+package com.projects.resumeManager.domain.entity;
 
 import lombok.*;
 

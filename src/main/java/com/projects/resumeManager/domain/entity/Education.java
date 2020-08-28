@@ -1,4 +1,4 @@
-package com.projects.resumeManager.domain;
+package com.projects.resumeManager.domain.entity;
 
 import lombok.*;
 
@@ -12,23 +12,20 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-public class Experience {
+public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
-    private String workAt;
+    private String studyAt;
 
     @NotEmpty
-    private String position;
-
-    @NotEmpty
-    private String role;
+    private String major;
 
     @NotNull
     private LocalDate startDate;
@@ -40,7 +37,6 @@ public class Experience {
 
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "experience")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "education")
     private List<Resume> resumeList;
 }
-

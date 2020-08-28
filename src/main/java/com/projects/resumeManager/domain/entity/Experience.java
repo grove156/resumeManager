@@ -1,39 +1,46 @@
-package com.projects.resumeManager.domain;
-
+package com.projects.resumeManager.domain.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-public class Coverletter {
+public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
-    private String title;
+    private String workAt;
 
     @NotEmpty
-    @Column(columnDefinition = "TEXT")
-    private String content;
+    private String position;
+
+    @NotEmpty
+    private String role;
+
+    @NotNull
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 
     @NotNull
     private LocalDateTime createdAt;
 
-    @NotNull
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coverletter")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "experience")
     private List<Resume> resumeList;
 }
+

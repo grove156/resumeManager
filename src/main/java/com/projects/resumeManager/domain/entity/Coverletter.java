@@ -1,4 +1,5 @@
-package com.projects.resumeManager.domain;
+package com.projects.resumeManager.domain.entity;
+
 
 import lombok.*;
 
@@ -6,14 +7,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-public class Resume {
+public class Coverletter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,26 +24,16 @@ public class Resume {
     @NotEmpty
     private String title;
 
+    @NotEmpty
+    @Column(columnDefinition = "TEXT")
+    private String content;
+
     @NotNull
     private LocalDateTime createdAt;
 
+    @NotNull
     private LocalDateTime updatedAt;
 
-    @ManyToOne
-    private User user;
-
-    @OneToOne
-    private Photo photo;
-
-    @ManyToOne
-    private Coverletter coverletter;
-
-    @ManyToOne
-    private Experience experience;
-
-    @ManyToOne
-    private Education education;
-
-    @ManyToOne
-    private Certificate certificate;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coverletter")
+    private List<Resume> resumeList;
 }
