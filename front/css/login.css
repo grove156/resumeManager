@@ -1,0 +1,176 @@
+/* COMMON */
+.body__container {
+    font-family: 'Alata', sans-serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none; /*a태그의 및줄을 제거하기 위해*/
+}
+
+/* COMMON--button */
+.btn {
+    height: 34px;
+    background: #eee linear-gradient(to bottom, #fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    display: block; /*flex로 컨테이너 디스플레이 선언*/
+    align-items: center; /*좌우정렬*/
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight:500;
+    line-height: 1.5;
+    cursor: pointer;
+    box-sizing: border-box; /*padding이 넘치지 않도록 박스 사이즈 = 원래사이즈-패딩사이즈*/
+    position: relative;/*자식요소 즉 .btn:hover::before의 absolute를 멈추게 하기 위해서*/
+    color: #333;
+}
+
+.btn:hover::before {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.07);
+}
+
+.btn--blue {
+    border: 1px solid #4D58E9;
+    color: #fff;
+    background: #4D58E9 linear-gradient(#4D58E9, #121CA0);
+}
+
+.btn--red {
+    border: 1px solid #EC1515;
+    color: #fff;
+    background: #EC1515 linear-gradient(#EC1515,#7B0D0D );
+}
+
+/* COMMON--input */
+.input--text {
+    height: 34px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    /*box-shadow 의 단축속성 inset- 안쪽으로 그림자 생성, 1px-x축 밑으로 1px, 2px-y축 오른쪽으로 1px, 1px-블러처리 1px, 컬러*/
+    box-shadow: inset 1px 2px 1px rgba(0,0,0,0.15); 
+    font-size: 16px;
+
+    
+}
+
+.input--text:focus {
+    border-color: #51a7e8;
+    box-shadow: inset 1px 2px 1px rgba(0,0,0,0.15), 
+                0 0 5px rgba(81, 167, 232, 0.5);
+}
+
+/* MAIN */
+.background {
+    background-image: url("../img/background-resume.png");
+    background-repeat: no-repeat;
+    background-position: bottom-left;
+    background-size: cover;
+    background-color:rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+    height: 760px;
+    text-align: center;
+}
+
+.background .backgorund--text {
+    position: relative;
+    top: 40px;
+    line-height: 2;
+    font-size: 28px;
+    font-weight: 100;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(0,0,0,1);
+    letter-spacing: 10px;
+    
+}
+
+.bottom {
+    height: 100px;
+}
+
+.inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-item {
+    text-align: center;
+    position: fixed;
+    top: 200px;
+    
+}
+
+.inner .title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,1);
+    
+}
+
+.inner .panel {
+    background-color: #fff;
+    width: 280px;
+    height:200px;
+    padding: 50px 23px;
+    border-radius: 12px;
+    box-shadow: 10px 10px 20px 20px rgba(0,0,0,0.25);      
+}
+
+.inner .login-group {
+
+}
+
+.inner .login-group .login__form {
+    
+}
+
+.inner .login-group .login__form .input--text {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.inner .login-group .login__form .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.inner .login-group .login__register {
+    margin-bottom: 12px;
+    color: #000000;
+    font-size: 10px;
+    text-align: right;
+}
+
+.inner .login-group .login__register a {
+    color: #000000;
+}
+
+.inner .login-group .login__register a:hover {
+   color: #4078c0;
+}
+
+.inner .login-group .login__oauth {
+    border-top: 2px solid #93939B; 
+    padding-top: 24px;
+}
+
+.inner .login-group .login__oauth .btn {
+    display: block;
+    width: 160px;
+    margin: 0 auto;
+}
