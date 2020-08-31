@@ -1,0 +1,71 @@
+@import url("common.css") screen;
+
+
+.body__container {
+    display:flex;
+}
+
+.background {
+    background-image: url("../img/background-sunset.jpg");
+    background-repeat: no-repeat;
+    background-position: top-left;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+    width: 70%;
+    height:780px;
+    text-align: center;
+}
+
+.background .background--title {
+    position: relative;
+    top: 240px;
+    line-height: 2;
+    font-size: 36px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(0,0,0,1); 
+}
+
+.background .background--text {
+    position: relative;
+    top: 40px;
+    line-height: 2;
+    font-size: 28px;
+    font-weight: 100;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 2px rgba(0,0,0,1);
+    letter-spacing: 10px;
+}
+
+.panel--register {
+    width:30%;
+    height:780px;
+}
+
+.inner {
+    max-width: 380px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.inner .title {
+    margin-bottom: 70px;
+    font-weight:800;
+    font-size: 34px;
+    letter-spacing: 20px;
+}
+
+.inner .input--text {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inner .btn {
+    width: 100%;
+    margin-bottom:20px;
+}
+
+.inner .btn--blue {
+
+}
