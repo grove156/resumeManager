@@ -1,20 +1,16 @@
 package com.projects.resumeManager.controller;
 
-import com.projects.resumeManager.dto.request.LoginRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class SessionController {
 
-    @PostMapping("/login")
-    public void login(){
-
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login";
     }
 
-    @PostMapping("/register")
-    public void register(){
-
-    }
 }

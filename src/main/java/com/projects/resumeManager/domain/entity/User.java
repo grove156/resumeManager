@@ -44,6 +44,8 @@ public class User {
 
     private LocalDateTime updatedAt;
 
+    private boolean enable;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Resume> resumeList;
 }

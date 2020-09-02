@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no maximum-scale=1, minimum-scale=1">
@@ -22,8 +22,10 @@
     <meta property="twitter:url" content="#">
 
     <!--Custom CSS-->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/register.css">
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
+    <link th:href="@{/css/register.css}" rel="stylesheet" />
 
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">

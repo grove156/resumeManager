@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no maximum-scale=1, minimum-scale=1">
@@ -23,8 +23,10 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
 
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
@@ -57,21 +59,21 @@
                 <div class="login-group">
 
                     <div class="login__form">
-                        <form action="#">
+                        <form action="/auth/login" method="POST">
                             <div class="input-group">
                                 <div class="input--label"><i class="fa fa-user" aria-hidden="true"></i></div>
-                                <input class="input--text" type="text" placeholder="EMAIL">
+                                <input name="email" class="input--text" type="text" placeholder="EMAIL">
                             </div>
                             <div class="input-group">
                                 <div class="input--label"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
-                                <input class="input--text" type="password" placeholder="PW">
+                                <input name="password" class="input--text" type="password" placeholder="PW">
                             </div>
-                            <button class="btn btn--blue">Login</button>
+                            <button type="submit" class="btn btn--blue">Login</button>
                         </form>
                     </div>
 
                     <div class="login__register">
-                        <a href="#">Register </a>/
+                        <a th:href="@{register}">Register </a>/
                         <a href="#"> Lost your ID/PW?</a>
                     </div>
 
