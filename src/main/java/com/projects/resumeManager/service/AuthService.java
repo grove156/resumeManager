@@ -33,7 +33,6 @@ public class AuthService implements UserDetailsService {
         User user = userRepository.findByEmail(email);
 
         if (user == null) {
-            System.out.println("null error");
             throw new UsernameNotFoundException(email + " is not found");
 
         }

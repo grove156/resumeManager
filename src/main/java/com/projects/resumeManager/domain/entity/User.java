@@ -37,7 +37,7 @@ public class User {
     private LocalDate dateOfBirth;
 
     @NotNull
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @NotNull
     private LocalDateTime createdAt;
