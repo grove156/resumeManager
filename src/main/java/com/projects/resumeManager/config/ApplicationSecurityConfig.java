@@ -1,5 +1,6 @@
 package com.projects.resumeManager.config;
 
+import com.projects.resumeManager.domain.enums.UserRole;
 import com.projects.resumeManager.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    AuthService authService;
+    public AuthService authService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,15 +31,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resume/*").hasRole("USER")
                 .antMatchers("/user").hasRole("USER")
                 .antMatchers("/user/*").hasRole("USER")
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/auth/login")
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/dashboard", true).permitAll()
+                    .defaultSuccessUrl("/dashboard", true)
+                    .failureForwardUrl("/login").permitAll()
                 .and()
                     .logout().permitAll();
 

@@ -12,6 +12,6 @@ public class ResumeController {
 
     @GetMapping("/dashboard")
     public String dashboard(){
-        return "<h1>Welcome</h1>";
+        return "dashboard";
     }
 }

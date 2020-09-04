@@ -62,7 +62,7 @@ public class UserService {
         //save user's authority date into AuthorityRepository
         Authority authority = Authority.builder()
                 .email(userCreateRequest.getEmail())
-                .authority(UserRole.USER)
+                .authority(UserRole.ROLE_USER)
                 .build();
 
         authorityRepository.save(authority);
