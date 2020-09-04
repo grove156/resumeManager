@@ -35,3 +35,4 @@ out/
 
 ### oauth id,pw setting ###
 application-oauth.properties
+application.properties
