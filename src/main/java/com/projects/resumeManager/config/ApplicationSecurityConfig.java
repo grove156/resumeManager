@@ -2,6 +2,7 @@ package com.projects.resumeManager.config;
 
 import com.projects.resumeManager.domain.enums.UserRole;
 import com.projects.resumeManager.service.AuthService;
+import com.projects.resumeManager.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -18,6 +20,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public AuthService authService;
+
+    @Autowired
+    public CustomOAuth2UserService customOAuth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,7 +46,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/dashboard", true)
                     .failureForwardUrl("/login").permitAll()
                 .and()
-                    .logout().permitAll();
+                    .logout().permitAll()
+                .and()
+                    .oauth2Login()
+                        .userInfoEndpoint()
+                            .userService(customOAuth2UserService);
 
 
     }

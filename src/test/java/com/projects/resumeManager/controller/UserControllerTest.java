@@ -58,8 +58,7 @@ class UserControllerTest {
         User user = User.builder()
                 .email("gootpy@gmail.com")
                 .password("$2a$10$zl3cA/EwYpM41Ti00FID7O3r7Nx79hkl.vqGYcQdn42VbUXquBYpW")
-                .firstName("tester")
-                .lastName("kim")
+                .name("tester Kim")
                 .phoneNumber("01011112222")
                 .dateOfBirth(LocalDate.of(1989,7,8))
                 .build();

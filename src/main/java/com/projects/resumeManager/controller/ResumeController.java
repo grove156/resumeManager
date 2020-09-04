@@ -15,13 +15,12 @@ import java.util.List;
 @Controller
 public class ResumeController {
 
-    Authentication authentication = (Authentication) SecurityContextHolder.getContext().getAuthentication();
-    AuthUser user = (AuthUser) authentication.getPrincipal();
-
     @GetMapping("/dashboard")
     public String dashboard(Model model){
+//        Authentication authentication = (Authentication) SecurityContextHolder.getContext().getAuthentication();
+//        AuthUser user = (AuthUser) authentication.getPrincipal();
 
-        model.addAttribute("user",user);
+//        model.addAttribute("user",user);
         return "dashboard";
     }
 }

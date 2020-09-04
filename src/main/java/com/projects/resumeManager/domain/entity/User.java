@@ -24,19 +24,13 @@ public class User {
     @NotEmpty
     private String email;
 
-    @NotEmpty
     private String password;
 
     @NotEmpty
-    private String firstName;
+    private String name;
 
-    @NotEmpty
-    private String lastName;
-
-    @NotNull
     private LocalDate dateOfBirth;
 
-    @NotNull
     private String phoneNumber;
 
     @NotNull

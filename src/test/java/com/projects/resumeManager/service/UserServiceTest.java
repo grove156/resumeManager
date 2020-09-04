@@ -31,8 +31,7 @@ class UserServiceTest {
         User userDetail = User.builder()
                 .email("tester@gmail.com")
                 .password("$2a$10$zl3cA/EwYpM41Ti00FID7O3r7Nx79hkl.vqGYcQdn42VbUXquBYpW")
-                .firstName("Tester")
-                .lastName("Kim")
+                .name("Tester Kim")
                 .createdAt(LocalDateTime.now())
                 .phoneNumber("01011112222")
                 .dateOfBirth(LocalDate.now())
@@ -43,6 +42,6 @@ class UserServiceTest {
 
         User user = userService.getUserDetail(1L);
 
-        assertThat(user.getFirstName(),is("Tester"));
+        assertThat(user.getName(),is("Tester Kim"));
     }
 }

@@ -48,8 +48,7 @@ public class UserService {
         User user = User.builder()
                 .email(userCreateRequest.getEmail())
                 .password(passwordEncoder.encode(userCreateRequest.getPassword()))
-                .firstName(userCreateRequest.getFirstName())
-                .lastName(userCreateRequest.getLastName())
+                .name(userCreateRequest.getName())
                 .phoneNumber(userCreateRequest.getPhoneNumber())
                 .dateOfBirth(dateTransformer(userCreateRequest.getDateOfBirth()))
                 .createdAt(LocalDateTime.now())
@@ -81,8 +80,7 @@ public class UserService {
 
         //set found user properties as requested user details
         user.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
-        user.setFirstName(userUpdateRequest.getFirstName());
-        user.setLastName(userUpdateRequest.getLastName());
+        user.setName(userUpdateRequest.getName());
         user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
         user.setDateOfBirth(dateTransformer(userUpdateRequest.getDateOfBirth()));
 
