@@ -3,6 +3,7 @@ package com.projects.resumeManager.service;
 import com.projects.resumeManager.domain.AuthUser;
 import com.projects.resumeManager.domain.entity.Authority;
 import com.projects.resumeManager.domain.entity.User;
+import com.projects.resumeManager.dto.SessionUser;
 import com.projects.resumeManager.repository.AuthorityRepository;
 import com.projects.resumeManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Service
 public class AuthService implements UserDetailsService {
+
+    @Autowired
+    HttpSession httpSession;
 
     @Autowired
     UserRepository userRepository;
@@ -46,6 +51,8 @@ public class AuthService implements UserDetailsService {
                 .isAccountNonLocked(true)
                 .isCredentialsNonExpired(true)
                 .build();
+
+        httpSession.setAttribute("user",new SessionUser(user));
 
         return authUser;
 
