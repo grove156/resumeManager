@@ -40,7 +40,7 @@ public class Experience {
 
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "experience")
-    private List<Resume> resumeList;
+    @ManyToOne
+    private Resume resume;
 }
 

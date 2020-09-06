@@ -20,10 +20,13 @@ public class Certificate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    private String certificateTitle;
+
     private String score;
 
     @NotNull
-    private LocalDate issuedAt;
+    private LocalDate issuedDate;
 
     private String validDuration;
 
@@ -33,6 +36,6 @@ public class Certificate {
     @NotNull
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "certificate")
-    private List<Resume> resumeList;
+    @ManyToOne
+    private Resume resume;
 }

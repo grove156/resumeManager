@@ -5,6 +5,7 @@ import com.projects.resumeManager.domain.entity.User;
 import com.projects.resumeManager.domain.enums.UserRole;
 import com.projects.resumeManager.dto.request.UserCreateRequest;
 import com.projects.resumeManager.dto.request.UserUpdateRequest;
+import com.projects.resumeManager.dto.response.UserDetailResponse;
 import com.projects.resumeManager.repository.AuthorityRepository;
 import com.projects.resumeManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,18 @@ public class UserService {
 
     //1. get user by user id
     //2. return user found by id, or if user is null, throw user not found exception;
-    public User getUserDetail(Long id) throws Exception {
+    public UserDetailResponse getUserDetail(Long id) throws Exception {
         //TODO: make userNotFoundException(custom) and change Exception to userNotFoundException(custom)
-        User userDetail = userRepository.findById(id).orElseThrow(()->new Exception());
+        //find user with user id
+        User user = userRepository.findById(id).orElseThrow(()->new Exception());
+
+        //map found user with user detail response object
+        UserDetailResponse userDetail = UserDetailResponse.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .phoneNumber(user.getPhoneNumber())
+                .dateOfBirth(user.getDateOfBirth())
+                .build();
 
         return userDetail;
     }

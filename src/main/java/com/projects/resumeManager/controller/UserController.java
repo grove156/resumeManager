@@ -3,6 +3,7 @@ package com.projects.resumeManager.controller;
 import com.projects.resumeManager.domain.entity.User;
 import com.projects.resumeManager.dto.request.UserCreateRequest;
 import com.projects.resumeManager.dto.request.UserUpdateRequest;
+import com.projects.resumeManager.dto.response.UserDetailResponse;
 import com.projects.resumeManager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,10 +34,12 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public void getUserDetail(@PathVariable Long id,
+    public String getUserDetail(@PathVariable Long id,
                               Model model) throws Exception {
-        User userDetail = userService.getUserDetail(id);
+        UserDetailResponse userDetail = userService.getUserDetail(id);
         model.addAttribute("userDetail",userDetail);
+
+        return "/userUpdate";
     }
 
     @PatchMapping("/user/{id}")

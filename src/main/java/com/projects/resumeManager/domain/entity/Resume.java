@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -33,15 +34,15 @@ public class Resume {
     @OneToOne
     private Photo photo;
 
-    @ManyToOne
-    private Coverletter coverletter;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
+    private List<Coverletter> coverletterList;
 
-    @ManyToOne
-    private Experience experience;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
+    private List<Experience> experienceList;
 
-    @ManyToOne
-    private Education education;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
+    private List<Education> educationList;
 
-    @ManyToOne
-    private Certificate certificate;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")
+    private List<Certificate> certificateList;
 }

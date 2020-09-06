@@ -37,6 +37,6 @@ public class Education {
 
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "education")
-    private List<Resume> resumeList;
+    @ManyToOne
+    private Resume resume;
 }

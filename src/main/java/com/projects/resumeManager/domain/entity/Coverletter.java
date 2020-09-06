@@ -34,6 +34,6 @@ public class Coverletter {
     @NotNull
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coverletter")
-    private List<Resume> resumeList;
+    @ManyToOne
+    private Resume resume;
 }
