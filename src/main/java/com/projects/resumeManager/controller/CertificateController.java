@@ -6,10 +6,7 @@ import com.projects.resumeManager.service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,7 +28,20 @@ public class CertificateController {
 
     @PostMapping("/resume/{resumeId}/certificate")
     public void createCertificate(@PathVariable(value = "resumeId") Long resumeId,
-                                  @Valid @RequestBody CertificateCreateRequest certificateCreateRequest){
-        certificateService.createCertificate(resumeId, certificateCreateRequest);
+                                  @Valid @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
+        CertificateDetailResponse certificateDetailResponse = certificateService.createCertificate(resumeId, certificateCreateRequest);
+    }
+
+    @PatchMapping("/resume/{resumeId}/certificate/{certificateId}")
+    public void updateCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                  @PathVariable(value = "certificateId") Long certificateId,
+                                  @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
+        CertificateDetailResponse certificateDetailResponse = certificateService.updateCertificate(resumeId, certificateId, certificateCreateRequest);
+    }
+
+    @DeleteMapping("/resume/{resumeId}/education/{certificateId}")
+    public void deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                  @PathVariable(value = "certificateId") Long certificateId){
+        certificateService.deleteCertificate(resumeId, certificateId);
     }
 }
