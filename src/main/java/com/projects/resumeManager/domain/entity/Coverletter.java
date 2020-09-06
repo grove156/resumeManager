@@ -31,7 +31,6 @@ public class Coverletter {
     @NotNull
     private LocalDateTime createdAt;
 
-    @NotNull
     private LocalDateTime updatedAt;
 
     @ManyToOne
