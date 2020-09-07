@@ -15,8 +15,8 @@ public class CoverletterController {
     CoverletterService coverletterService;
 
     @GetMapping("/resume/{resumeId}/coverletter/{coverletterId}")
-    public void getCoverletter(@PathVariable Long resumeId,
-                               @PathVariable Long coverletterId,
+    public void getCoverletter(@PathVariable(value = "resumeId") Long resumeId,
+                               @PathVariable(value = "coverletterId") Long coverletterId,
                                Model model) throws Exception {
 
         CoverletterDetailResponse coverletterDetailResponse= coverletterService.getCoverletter(resumeId, coverletterId);
@@ -25,7 +25,7 @@ public class CoverletterController {
     }
 
     @PostMapping("/resume/{resumeId}/coverletter")
-    public void createCoverletter(@PathVariable Long resumeId,
+    public void createCoverletter(@PathVariable(value = "resumeId") Long resumeId,
                                   @RequestBody CoverletterCreateRequest coverletterCreateRequest,
                                   Model model) throws Exception {
 
@@ -35,8 +35,8 @@ public class CoverletterController {
     }
 
     @PatchMapping("/resume/{resumeId}/coverletter/{coverletterId}")
-    public void updateCoverletter(@PathVariable Long resumeId,
-                                  @PathVariable Long coverletterId,
+    public void updateCoverletter(@PathVariable(value = "resumeId") Long resumeId,
+                                  @PathVariable(value = "coverletterId") Long coverletterId,
                                   @RequestBody CoverletterCreateRequest coverletterCreateRequest,
                                   Model model) throws Exception {
 
@@ -46,8 +46,8 @@ public class CoverletterController {
     }
 
     @DeleteMapping("/resume/{resumeId}/coverletter/{coverletterId}")
-    public void deleteCoverletter(@PathVariable Long resumeId,
-                                  @PathVariable Long coverletterId){
+    public void deleteCoverletter(@PathVariable(value = "resumeId") Long resumeId,
+                                  @PathVariable(value = "coverletterId") Long coverletterId){
         coverletterService.deleteCoverletter(resumeId, coverletterId);
     }
 }
