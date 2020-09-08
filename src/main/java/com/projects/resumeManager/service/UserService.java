@@ -82,6 +82,7 @@ public class UserService {
     //1. find user with user id
     //2. set user properties as userUpdatedRequest
     //3. save updated user properties
+    @Transactional
     public User updateUser(Long id, UserUpdateRequest userUpdateRequest) throws Exception {
         //TODO: make userNotFoundException(custom) and change Exception to userNotFoundException(custom)
 

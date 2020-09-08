@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
@@ -25,6 +26,7 @@ public class CoverletterService {
     //1. find coverletter with coverletterId
     //2. map found coverletter with coverletterDetailResponse object
     //3. return coverletterDetailResponse
+    @Transactional
     public CoverletterDetailResponse getCoverletter(Long resumeId, Long coverletterId) throws Exception {
         //TODO: create exception for coverletterNotFound
         //1
@@ -47,6 +49,7 @@ public class CoverletterService {
     //2. map coverletter create request object with coverletter object
     //3. save
     //4. map coverletter detail response object with coverletter then return
+    @Transactional
     public CoverletterDetailResponse createCoverletter(Long resumeId,
                                                        CoverletterCreateRequest coverletterCreateRequest) throws Exception {
         //TODO: create exception for resumeNotFound
@@ -80,7 +83,8 @@ public class CoverletterService {
     //1. find coverletter object by coverletterId
     //2. set coverletter instance with instance of coverletterCreateRequest
     //3. save coverletter
-    //4. map coverletterDetailResponse with coverletter and return;
+    //4. map coverletterDetailResponse with coverletter and return
+    @Transactional
     public CoverletterDetailResponse updateCoverletter(Long resumeId, Long coverletterId, CoverletterCreateRequest coverletterCreateRequest) throws Exception {
 
         //TODO: create exception for coverletterNotFound

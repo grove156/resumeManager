@@ -9,6 +9,7 @@ import com.projects.resumeManager.repository.ResumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
@@ -23,6 +24,7 @@ public class EducationService {
     //1. find education with education id
     //2. map education detail response object with found education object
     //3.return education detail response
+    @Transactional
     public EducationDetailResponse getEduacation(Long resumeId, Long educationId) throws Exception {
         //TODO:EducationNotFound exception and replace it with Exception
         //1
@@ -47,6 +49,7 @@ public class EducationService {
     //2. set education instance with instance of education request
     //3. save education object
     //4. map education detail response object with saved education object
+    @Transactional
     public EducationDetailResponse createEducation(Long resumeId, EducationCreateRequest educationCreateRequest) throws Exception {
         //TODO:ResumeNotFoundException and replace it
         //1
@@ -83,6 +86,7 @@ public class EducationService {
     //2. replace found education object instance with education reqeusted instance
     //3. save updated education object
     //4. map education detail response with saved education object then return
+    @Transactional
     public EducationDetailResponse updateEducation(Long resumeId, Long educationId, EducationCreateRequest educationCreateRequest) throws Exception {
         //TODO:EducationNotFound exception and replace it with Exception
         //1

@@ -1,6 +1,7 @@
 package com.projects.resumeManager.service;
 
 import com.projects.resumeManager.domain.entity.User;
+import com.projects.resumeManager.dto.response.UserDetailResponse;
 import com.projects.resumeManager.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,7 @@ class UserServiceTest {
 
         given(userRepository.findById(any())).willReturn(Optional.of(userDetail));
 
-        User user = userService.getUserDetail(1L);
+        UserDetailResponse user = userService.getUserDetail(1L);
 
         assertThat(user.getName(),is("Tester Kim"));
     }

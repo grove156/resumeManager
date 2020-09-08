@@ -9,6 +9,7 @@ import com.projects.resumeManager.repository.ResumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -24,6 +25,7 @@ public class CertificateService {
     //1. find certificate details using certificate id
     //2. mapping certificate details to certificate detail response object
     //3. return certificate response object
+    @Transactional
     public CertificateDetailResponse getCertificate(Long resumeId, Long certificateId) throws Exception {
         //TODO: create and apply certificate not exist exception
         //find certificate with certificate id
@@ -49,6 +51,7 @@ public class CertificateService {
     //2. map certificate create request to certificate object
     //3. save
     //4. map saved certificate obejct to certificate detail response object and then return
+    @Transactional
     public CertificateDetailResponse createCertificate(Long resumeId, CertificateCreateRequest certificateCreateRequest) throws Exception {
         //TODO: wring resume exception create and apply instead of Exception
 
@@ -85,6 +88,7 @@ public class CertificateService {
     //2. set found instance of certificate with instance of certificate update request
     //3. save updated certificate
     //4. map updated certificate with certificate detail response object  return certificate detail response object
+    @Transactional
     public CertificateDetailResponse updateCertificate(Long resumeId,
                                                        Long certificateId,
                                                        CertificateCreateRequest certificateCreateRequest) throws Exception {

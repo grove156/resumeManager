@@ -9,6 +9,7 @@ import com.projects.resumeManager.repository.ResumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
@@ -23,6 +24,7 @@ public class ExperienceService {
     //1. find experience with experience id
     //2. map response object with experience object
     //3. return
+    @Transactional
     public ExperienceDetailResponse getExperience(Long resumeId, Long experienceId) throws Exception {
         //TODO: experienceNotFound exception create and apply
 
@@ -49,6 +51,7 @@ public class ExperienceService {
     //2. map experience object with request object
     //3. save experience object
     //4. map response object with saved experience object
+    @Transactional
     public ExperienceDetailResponse createExperience(Long resumeId, ExperienceCreateRequest experienceCreateRequest) throws Exception {
         //TODO: create ResumeNotFound exception and apply
 
@@ -88,6 +91,7 @@ public class ExperienceService {
     //2. set experience instance with instance of request object
     //3. save experience object
     //4. map response object with saved experience object
+    @Transactional
     public ExperienceDetailResponse updateExperience(Long resumeId, Long experienceId, ExperienceCreateRequest experienceCreateRequest) throws Exception {
 
         //1
