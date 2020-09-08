@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,5 +72,61 @@ public class ResumeService {
                 .build();
 
         return resumeDetailResponse;
+    }
+
+    @Transactional
+    public ResumeDetailResponse createResume(Long userId, String title){
+        //TODO: resumeNotFound exception
+        User user = userRepository.findById(userId).orElseThrow();
+
+        Resume resume = Resume.builder()
+                .title(title)
+                .user(user)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        Resume savedResume = resumeRepository.save(resume);
+
+        user.getResumeList().add(savedResume);
+
+        userRepository.save(user);
+
+        ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
+                .id(savedResume.getId())
+                .title(savedResume.getTitle())
+                .createdAt(savedResume.getCreatedAt())
+                .user(savedResume.getUser())
+                .build();
+
+        return resumeDetailResponse;
+    }
+
+    public ResumeDetailResponse updateResume(Long userId, Long resumeId, String title) {
+        //TODO: resumeNotFound exception
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow();
+
+        resume.setTitle(title);
+
+        Resume savedResume = resumeRepository.save(resume);
+
+        ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
+                .id(savedResume.getId())
+                .user(savedResume.getUser())
+                .title(savedResume.getTitle())
+                .createdAt(savedResume.getCreatedAt())
+                .updatedAt(savedResume.getUpdatedAt())
+                .photo(savedResume.getPhoto())
+                .certificateList(savedResume.getCertificateList())
+                .coverletterList(savedResume.getCoverletterList())
+                .educationList(savedResume.getEducationList())
+                .experienceList(savedResume.getExperienceList())
+                .build();
+
+        return resumeDetailResponse;
+    }
+
+
+    public void deleteResume(Long userId, Long resumeId) {
+        resumeRepository.deleteById(resumeId);
     }
 }

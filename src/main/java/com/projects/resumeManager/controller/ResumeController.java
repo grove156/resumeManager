@@ -60,4 +60,31 @@ public class ResumeController {
 
         return "";//TODO:create "/resume/{resumeId}/{templateID}" template with resume detail data
     }
+
+    @PostMapping("/{userId}/resume")
+    public void createResume(@PathVariable(value = "userId") Long userId,
+                             @RequestBody String title,
+                             Model model){
+
+        ResumeDetailResponse resumeDetailResponse = resumeService.createResume(userId, title);
+
+        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+    }
+
+    @PatchMapping("/{userId}/resume/{resumeId}")
+    public void updateResume(@PathVariable(value = "userId") Long userId,
+                             @PathVariable(value = "userId") Long resumeId,
+                             @RequestBody String title,
+                             Model model){
+        ResumeDetailResponse resumeDetailResponse = resumeService.updateResume(userId, resumeId, title);
+
+        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+    }
+
+    @DeleteMapping("/{userId}/resume/{resumeId}")
+    public void deleteResume(@PathVariable(value = "userId") Long userId,
+                             @PathVariable(value = "userId") Long resumeId){
+        resumeService.deleteResume(userId, resumeId);
+    }
+
 }

@@ -49,7 +49,10 @@ public class PhotoService {
     }
 
     @Transactional
-    public PhotoDetailResponse createPhoto(MultipartFile uploadFile){
+    public PhotoDetailResponse createPhoto(Long resumeId, MultipartFile uploadFile){
+        //TODO: proper exception
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow();
+
         PhotoCreateRequest photoCreateRequest = photoUpload(uploadFile);
 
         Photo photo = Photo.builder()
@@ -57,6 +60,7 @@ public class PhotoService {
                 .fileSize(photoCreateRequest.getFileSize())
                 .url(photoCreateRequest.getUrl())
                 .createdAt(photoCreateRequest.getCreatedAt())
+                .resume(resume)
                 .build();
 
         Photo savedPhoto = photoRepository.save(photo);
@@ -73,10 +77,10 @@ public class PhotoService {
     }
 
     @Transactional
-    public PhotoDetailResponse updatePhoto(MultipartFile uploadFile, Long PhotoId){
+    public PhotoDetailResponse updatePhoto(Long photoId, Long resumeId, MultipartFile uploadFile){
         PhotoCreateRequest photoCreateRequest = photoUpload(uploadFile);
         //TODO: proper exception
-        Photo photo = photoRepository.findById(PhotoId).orElseThrow();
+        Photo photo = photoRepository.findById(photoId).orElseThrow();
 
         photo.setPhotoTitle(photoCreateRequest.getPhotoTitle());
         photo.setFileSize(photoCreateRequest.getFileSize());
