@@ -26,22 +26,6 @@ public class ResumeController {
     @Autowired
     ResumeService resumeService;
 
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) throws Exception {
-            User user = (User)httpSession.getAttribute("user");
-
-            if(user == null){
-                //TODO: replace with SessionExpiredException
-                throw new Exception();
-            }
-
-            List<ResumeDetailResponse> resumeList = resumeService.getResumeList(user.getId());
-
-            model.addAttribute("resumeList",resumeList);
-
-        return "dashboard";
-    }
-
     @GetMapping("/resume/{resumeId}")
     public void getResumeDetailForUpdate(@PathVariable Long resumeId,
                                          Model model) throws Exception {

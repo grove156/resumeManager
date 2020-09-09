@@ -4,6 +4,8 @@ import com.projects.resumeManager.dto.request.CertificateCreateRequest;
 import com.projects.resumeManager.dto.response.CertificateDetailResponse;
 import com.projects.resumeManager.service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,37 +13,42 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
-@Controller
+@RestController
 public class CertificateController {
 
     @Autowired
     private CertificateService certificateService;
 
     @GetMapping("/resume/{resumeId}/certificate/{certificateId}")
-    public void getCertificate(@PathVariable(value = "resumeId") Long resumeId,
-                               @PathVariable(value = "certificateId") Long certificateId,
-                               Model model) throws Exception {
+    public CertificateDetailResponse getCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                                    @PathVariable(value = "certificateId") Long certificateId) throws Exception {
        CertificateDetailResponse certificateDetailResponse = certificateService.getCertificate(resumeId, certificateId);
 
-       model.addAttribute("certificateDetail", certificateDetailResponse);
+       return certificateDetailResponse;
     }
 
     @PostMapping("/resume/{resumeId}/certificate")
-    public void createCertificate(@PathVariable(value = "resumeId") Long resumeId,
-                                  @Valid @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
+    public CertificateDetailResponse createCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                                       @Valid @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
         CertificateDetailResponse certificateDetailResponse = certificateService.createCertificate(resumeId, certificateCreateRequest);
+
+        return certificateDetailResponse;
     }
 
     @PatchMapping("/resume/{resumeId}/certificate/{certificateId}")
-    public void updateCertificate(@PathVariable(value = "resumeId") Long resumeId,
-                                  @PathVariable(value = "certificateId") Long certificateId,
-                                  @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
+    public CertificateDetailResponse updateCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                                       @PathVariable(value = "certificateId") Long certificateId,
+                                                       @RequestBody CertificateCreateRequest certificateCreateRequest) throws Exception {
         CertificateDetailResponse certificateDetailResponse = certificateService.updateCertificate(resumeId, certificateId, certificateCreateRequest);
+
+        return certificateDetailResponse;
     }
 
     @DeleteMapping("/resume/{resumeId}/education/{certificateId}")
-    public void deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
-                                  @PathVariable(value = "certificateId") Long certificateId){
+    public ResponseEntity<?> deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
+                                               @PathVariable(value = "certificateId") Long certificateId){
         certificateService.deleteCertificate(resumeId, certificateId);
+
+        return ResponseEntity.status(HttpStatus.OK).body("{}");
     }
 }

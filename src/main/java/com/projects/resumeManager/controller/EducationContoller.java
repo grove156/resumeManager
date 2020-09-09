@@ -5,6 +5,8 @@ import com.projects.resumeManager.dto.request.EducationCreateRequest;
 import com.projects.resumeManager.dto.response.EducationDetailResponse;
 import com.projects.resumeManager.service.EducationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,29 +28,29 @@ public class EducationContoller {
     }
 
     @PostMapping("/resume/{resumeId}/education")
-    public void createEducation(@PathVariable(value = "resumeId") Long resumeId,
-                                @RequestBody EducationCreateRequest educationCreateRequest,
-                                Model model) throws Exception {
+    public EducationDetailResponse createEducation(@PathVariable(value = "resumeId") Long resumeId,
+                                @RequestBody EducationCreateRequest educationCreateRequest) throws Exception {
 
         EducationDetailResponse educationDetailResponse = educationService.createEducation(resumeId, educationCreateRequest);
 
-        model.addAttribute("educationDetailResponse", educationDetailResponse);
+        return educationDetailResponse;
     }
 
     @PatchMapping("/resume/{resumeId}/education/{educationId}")
-    public void updateEducation(@PathVariable(value = "resumeId") Long resumeId,
+    public EducationDetailResponse updateEducation(@PathVariable(value = "resumeId") Long resumeId,
                                 @PathVariable(value = "educationId") Long educationId,
-                                @RequestBody EducationCreateRequest educationCreateRequest,
-                                Model model) throws Exception {
+                                @RequestBody EducationCreateRequest educationCreateRequest) throws Exception {
         EducationDetailResponse educationDetailResponse = educationService.updateEducation(resumeId, educationId, educationCreateRequest);
 
-        model.addAttribute("educationDetailResponse", educationDetailResponse);
+        return educationDetailResponse;
     }
 
     @DeleteMapping("/resume/{resumeId}/education/{educationId}")
-    public void deleteEducation(@PathVariable(value = "resumeId") Long resumeId,
+    public ResponseEntity<?> deleteEducation(@PathVariable(value = "resumeId") Long resumeId,
                                 @PathVariable(value = "educationId") Long educationId){
         educationService.deleteEducation(resumeId, educationId);
+
+        return ResponseEntity.status(HttpStatus.OK).body("{}");
     }
 
 

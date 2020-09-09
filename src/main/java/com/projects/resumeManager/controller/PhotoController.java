@@ -18,31 +18,30 @@ public class PhotoController {
     PhotoService photoService;
 
     @GetMapping("resume/{resumeId}/photo")
-    public void getPhoto(@PathVariable(value="resumeId") Long resumeId,
-                         Model model){
+    public PhotoDetailResponse getPhoto(@PathVariable(value="resumeId") Long resumeId){
 
         PhotoDetailResponse photoDetailResponse = photoService.getPhoto(resumeId);
 
-        model.addAttribute("photoDetailResponse", photoDetailResponse);
+        return photoDetailResponse;
+
     }
 
     @PostMapping("resume/{resumeId}/photo")
-    public void createPhoto(@PathVariable(value="resumeId") Long resumeId,
+    public PhotoDetailResponse createPhoto(@PathVariable(value="resumeId") Long resumeId,
                             MultipartFile multipartFile,
                             Model model){
         PhotoDetailResponse photoDetailResponse = photoService.createPhoto(resumeId ,multipartFile);
 
-        model.addAttribute("photoDetailResponse", photoDetailResponse);
+        return photoDetailResponse;
     }
 
     @PatchMapping("resume/{resumeId}/photo/{photoId}")
-    public void updatePhoto(@PathVariable(value="resumeId") Long resumeId,
+    public PhotoDetailResponse updatePhoto(@PathVariable(value="resumeId") Long resumeId,
                             @PathVariable(value="photoId") Long photoId,
-                            MultipartFile multipartFile,
-                            Model model){
+                            MultipartFile multipartFile){
 
         PhotoDetailResponse photoDetailResponse = photoService.updatePhoto(photoId, resumeId, multipartFile);
 
-        model.addAttribute("photoDetailResponse", photoDetailResponse);
+        return photoDetailResponse;
     }
 }

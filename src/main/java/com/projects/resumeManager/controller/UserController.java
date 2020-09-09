@@ -21,11 +21,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/register")
-    public String getRegisterPage(){
-        return "register";
-    }
-
     @PostMapping("/register")
     public String createUser(@RequestBody @Valid UserCreateRequest resource, Model model){
         User savedUser = userService.createUser(resource);
