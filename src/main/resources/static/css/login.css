@@ -1,31 +1,8 @@
 @import url("common.css") screen;
 
-/* MAIN */
-.background {
-    background-image: url("../img/background-resume.png");
-    background-repeat: no-repeat;
-    background-position: bottom-left;
-    background-size: cover;
-    background-color:rgba(0, 0, 0, 0.2);
-    background-blend-mode: multiply;
-    height: 760px;
-    text-align: center;
-}
-
-.background .backgorund--text {
-    position: relative;
-    top: 40px;
-    line-height: 2;
-    font-size: 28px;
-    font-weight: 100;
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 2px rgba(0,0,0,1);
-    letter-spacing: 10px;
-    
-}
-
-.bottom {
-    height: 100px;
+.body__container {
+    background-color: #f1f1f1;
+    min-height:720px;
 }
 
 .inner {
@@ -35,89 +12,55 @@
     justify-content: center;
 }
 
-.inner-item {
-    text-align: center;
-    position: fixed;
-    top: 200px;
-    
-}
-
-.inner .title {
-    font-size: 36px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,1);
-    
-}
-
 .inner .panel--login {
-    width: 280px;
-    height:200px;
-    padding: 50px 23px;
+    margin-top: 100px;
+    width: 360px;
+    height: 420px;
+    box-sizing: border-box;
+    padding: 28px;
 }
 
-.inner .login-group {
-
-}
-
-.inner .login-group .login__form {
-    
-}
-
-.inner .login-group .login__form .input-group {
-    display: flex;
-}
-
-.inner .login-group .login__form .input--label {
-    width: 10%;
-    height: 34px;
-    color: #fff;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+.inner .panel--login .title {
     text-align: center;
-    line-height: 34px;
-    background-color: #000000;
+    font-weight: 600;
+    font-size: 38px;
+    letter-spacing: 18px;
+    margin: 30px;
 }
 
-.inner .login-group .login__form .input--text {
-    display: block;
-    width: 90%;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    margin-bottom: 12px;
+.inner .panel--login .section--login {
+    margin-bottom: 20px;
 }
 
-.inner .login-group .login__form .btn {
-    display: block;
+.inner .panel--login .section--login .input--text {
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
 }
 
-.inner .login-group .login__register {
-    margin-bottom: 12px;
-    color: #000000;
-    font-size: 10px;
-    text-align: right;
+.inner .panel--login .section--login .btn {
+    width: 100%;
 }
 
-.inner .login-group .login__register a {
-    color: #000000;
+.inner .panel--login .section--lost {
+    text-align: end;
 }
 
-.inner .login-group .login__register a:hover {
-   color: #4078c0;
+.inner .panel--login .section--lost .lost {
+  color: #000000;
+  font-weight: 100;
+  font-size: 12px;
 }
 
-.inner .login-group .login__oauth {
-    border-top: 2px solid #93939B; 
-    padding-top: 24px;
+.inner .panel--login .section--lost .lost:hover {
+    color: #2b55ad;
 }
 
-.inner .login-group .login__oauth .btn {
-    display: block;
-    width: 160px;
-    margin: 0 auto;
-    padding: 5px;
-    
+.inner .panel--login .section--oauth {
+    border-top: 1px solid #7e7e7e;
+    margin-top: 20px;
+    padding: 20px 0;
+}
+
+.inner .panel--login .section--oauth .btn {
+    width: 100%;
 }
