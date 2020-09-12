@@ -1,0 +1,93 @@
+@import url("common.css") screen;
+
+
+.body__container {
+    background-color: #f1f1f1;
+    min-height: 720px;
+}
+
+.main--inner {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 150px 0;
+}
+
+.section--header {
+    background: linear-gradient(to right,#0079bf,#5067c5);
+    position: fixed;
+    width: 100%;
+    top:0;
+    border-bottom: 1px solid #2b0a69;
+    z-index: 1;
+}
+
+.section--header .inner {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.section--header .inner .header {
+    height: 67px;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: center;
+}
+
+.section--header .nav {
+    display: flex;
+    align-items: center;   
+}
+
+.section--header .nav .nav__item {
+    color: #ffffff;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.section--header .nav .nav__item:hover {
+    color: #0079bf;
+    background-color: #ffffff;
+}   
+
+.main--inner .root-section {
+    border: 1px solid #8f8f8f;
+
+}
+
+.main--inner .section--title {
+    text-align: center;
+}
+
+.main--inner .section--title .title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 2;
+    letter-spacing: 15px;
+}
+
+.main--inner .section--form {
+    padding: 30px;
+}
+
+.main--inner .section--form .label {
+    display: block;
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 5px;
+}
+
+.main--inner .section--form .label i {
+    color: #d60000;
+    font-size: 12px;
+}
+
+.main--inner .section--form .input--text {
+    height: 29px;
+    width: 100%;
+}
+
+.main--inner .section--form .btn {
+    margin-top: 20px;
+    width: 100%;
+}
