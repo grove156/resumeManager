@@ -1,0 +1,218 @@
+@import url("common.css") screen;
+
+.body__container {
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+.inner {
+    max-width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section--header {
+    background: linear-gradient(to right,#0079bf,#5067c5);
+    position: fixed;
+    width: 100%;
+    top:0;
+    border-bottom: 1px solid #2b0a69;
+    z-index: 1;
+}
+
+.section--header .header {
+    height: 67px;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: center;
+}
+
+.section--header .nav {
+    display: flex;
+    align-items: center;   
+}
+
+.section--header .nav .nav__item {
+    color: #ffffff;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.section--header .nav .nav__item:hover {
+    color: #0079bf;
+    background-color: #ffffff;
+}
+
+.section--main {
+    margin-top: 67px;
+}
+
+.section--main .panel {
+    min-height: 653px;
+    box-sizing: border-box;
+    padding: 60px 50px;
+}
+
+.section--main .panel .title {
+    font-size: 36px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #000000;
+}
+
+.section--main .panel .resume-lists {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section--main .panel .resume-lists .resume-item {
+    width: 33.33%;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+
+.section--main .panel .resume-lists .resume-item .resume-image{
+    max-width: 100%;
+
+}
+
+.section--main .panel .resume-lists .resume-item .resume-image .img {
+    width: auto;
+    max-width: 100%;
+    border: 2px dashed rgb(0, 0, 0);
+    border-radius: 4px;    
+}
+
+.section--main .panel .resume-lists .resume-item .resume-image .img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.section--main .panel .resume-lists .resume-item .button-group {
+    display: flex;
+    justify-content: center;
+}
+
+.section--main .panel .resume-lists .resume-item .button-group .btn {
+    margin: 5px;
+}
+
+.section--main .panel .new-resume {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.section--main .panel .new-resume .btn {
+    height: 48px;
+    width: 380px;
+    font-size: 18px;
+}
+/* SIDE-BAR SECTION */
+#toggle {
+    display: none;
+}
+
+#toggle:checked ~ .section--sidebar{
+    left: 0;
+}
+
+label #btn, label #cancel {
+    position: absolute;
+    cursor: pointer;
+}
+
+label #btn {
+    left: 25px;
+    top: 25px;
+    font-size: 25px;
+    color: #000000;
+}
+
+label #cancel {
+    top: 10px;
+    left: 220px;
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.section--sidebar {
+    position: fixed;
+    margin-top: 67px;;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color:#5C5C5E;
+    /* background: linear-gradient(to bottom, #302c2c, #231522); */
+    border: 1px solid #b9b9b9;
+    transition: 0.5s;
+}
+
+.section--sidebar .sidebar__header {
+    margin-bottom: 40px;
+    padding: 32px;
+    text-align: center;
+    /* background-color: #433F3F; */
+    background: linear-gradient(to right, #433F3F, #2c2b2b);
+}
+
+.section--sidebar .sidebar__header h1 {
+    font-size: 24px;
+    letter-spacing: 12px;
+    color: #ffffff;
+}
+
+.section--sidebar .sidebar__img {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+.section--sidebar .sidebar__img h1 {
+    margin-top: 5px;
+    font-size: 20px;
+    color: #ffffff;
+
+}
+
+.section--sidebar .sidebar__img .profile-img {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.section--sidebar .menu {
+    margin-top: 60px;
+    text-align: center;
+}
+.section--sidebar .menu li {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.section--sidebar .menu li a {
+    color: #ffffff;
+    font-size: 20px;
+
+}
+
+.section--sidebar .menu li a:hover {
+    position: relative;
+    right: 20px;
+}
+
+footer {
+    height: 3000px;
+}

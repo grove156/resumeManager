@@ -43,26 +43,32 @@
 </head>
 <body>
 <div class="body__container">
-    <div class="background">
-        <p class="background--title"><i class="fa fa-eercast" aria-hidden="true"></i> Resume Manager</p>
-        <p class="background--text">Build your resume with Resume Manager.</p>
-        <p class="background--text">It's easy and fast🚀</p>
-    </div>
-    <div class="panel--register">
-        <div class="inner">
-            <h2 class="title">Register</h2>
-            <form action="#">
-                <input type="text" class="input--text" placeholder="EMAIL">
-                <input type="text" class="input--text" placeholder="PW">
-                <input type="text" class="input--text" placeholder="PW confirm">
-                <input type="text" class="input--text" placeholder="NAME">
-                <input type="text" class="input--text" placeholder="PHONE NUMBER">
-                <input id="datepicker" type="text" class="input--text" placeholder="BIRTH DAY">
-            </form>
-            <button class="btn btn--blue">Submit</button>
-            <button class="btn btn--red">Cancel</button>
+   <div class="inner">
+        <div class="root-section panel">
+            <div class="section--title">
+                <h1 class="title">Sign in</h1>
+            </div>
+
+            <div class="section--form">
+                <form action="#">
+                    <label class="label" for="">Email <i>*</i></label>
+                    <input type="text" class="input--text" placeholder="Example@example.com">
+                    <label class="label" for="">Password <i>*</i></label>
+                    <input type="password" class="input--text" placeholder="Password">
+                    <label class="label" for="">Password Confirm <i>*</i></label>
+                    <input type="password" class="input--text" placeholder="Password confirm">
+                    <label class="label" for="">Full name <i>*</i></label>
+                    <input type="text" class="input--text" placeholder="John Doe">
+                    <label class="label" for="">Date of Birth <i>*</i></label>
+                    <input id="datepicker" type="text" class="input--text" placeholder="MM/DD/YYYY">
+                    <label class="label" for="">Phone number <i>*</i></label>
+                    <input type="text" class="input--text" placeholder="0410-123-456">
+                    <button class="btn btn--blue">Sign in</button>
+                    <button class="btn" type="reset">Reset</button>
+                </form>
+            </div>
         </div>
-    </div>
+   </div>
 </div>
 <script>
     $( function() {

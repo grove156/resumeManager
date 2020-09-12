@@ -103,8 +103,8 @@ public class UserService {
 
     //Transfer String dateOfBirth type to LocalDate
     private LocalDate dateTransformer(String dateOfBirth){
-        Integer day = Integer.parseInt(dateOfBirth.substring(0,2));
-        Integer month = Integer.parseInt(dateOfBirth.substring(3,5));
+        Integer month = Integer.parseInt(dateOfBirth.substring(0,2));
+        Integer day = Integer.parseInt(dateOfBirth.substring(3,5));
         Integer year = Integer.parseInt(dateOfBirth.substring(6,10));
 
         return LocalDate.of(year,month,day);

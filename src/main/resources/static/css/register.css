@@ -2,70 +2,53 @@
 
 
 .body__container {
-    display:flex;
-}
-
-.background {
-    background-image: url("../img/background-sunset.jpg");
-    background-repeat: no-repeat;
-    background-position: top-left;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.2);
-    background-blend-mode: multiply;
-    width: 70%;
-    height:780px;
-    text-align: center;
-}
-
-.background .background--title {
-    position: relative;
-    top: 240px;
-    line-height: 2;
-    font-size: 36px;
-    font-weight: 600;
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 2px rgba(0,0,0,1); 
-}
-
-.background .background--text {
-    position: relative;
-    top: 40px;
-    line-height: 2;
-    font-size: 28px;
-    font-weight: 100;
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 2px rgba(0,0,0,1);
-    letter-spacing: 10px;
-}
-
-.panel--register {
-    width:30%;
-    height:780px;
+    background-color: #f1f1f1;
+    height: 720px;
 }
 
 .inner {
-    max-width: 380px;
-    margin: 100px auto;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.inner .root-section {
+    border: 1px solid #8f8f8f;
+
+}
+
+.inner .section--title {
     text-align: center;
 }
 
-.inner .title {
-    margin-bottom: 70px;
-    font-weight:800;
-    font-size: 34px;
-    letter-spacing: 20px;
+.inner .section--title .title {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 2;
+    letter-spacing: 15px;
 }
 
-.inner .input--text {
+.inner .section--form {
+    padding: 30px;
+}
+
+.inner .section--form .label {
+    display: block;
+    font-size: 14px;
+    margin-top: 16px;
+    margin-bottom: 5px;
+}
+
+.inner .section--form .label i {
+    color: #d60000;
+    font-size: 12px;
+}
+
+.inner .section--form .input--text {
+    height: 29px;
     width: 100%;
-    margin-bottom: 20px;
 }
 
-.inner .btn {
+.inner .section--form .btn {
+    margin-top: 20px;
     width: 100%;
-    margin-bottom:20px;
-}
-
-.inner .btn--blue {
-
 }
