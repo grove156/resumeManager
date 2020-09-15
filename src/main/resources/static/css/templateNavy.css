@@ -1,0 +1,55 @@
+@import url("common.css") screen;
+
+.section--btn {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+}
+
+.root {
+    margin: 20px auto;  
+    width: 826px;
+    min-height: 1169px;
+    border: 1px solid #000000;
+    padding: 50px 10px;
+    display: flex;
+}
+
+.root .section--title {
+    background-color: rgba(22, 39, 118, .8);
+    width: 100%;
+    display: block;
+    height: 240px;
+    border-radius: 4px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 80px;
+}
+
+.root .section--title h1 {
+    font-weight: 300;
+    font-size: 24px;
+    color: #ffffff;
+    letter-spacing: 15px;
+    margin-top: 80px;
+    line-height: 3;
+    border-bottom: 2px solid #ffffff;
+    text-shadow: 0 0 2px #000000;
+}
+
+.root .section--main {
+    display: flex;
+    width: 100%;
+}
+
+.root .section--main .main-content {
+    width: 70%;
+    background-color: tomoto;
+    height: 800px;
+}
+
+.root .section--main .sidebar {
+    width: 30%;
+    background-color: aqua;
+    height: 800px;
+}

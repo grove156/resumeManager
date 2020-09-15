@@ -1,0 +1,131 @@
+@import url("common.css") screen;
+
+.section--btn {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+}
+
+.body__container {
+    margin: 20px auto;  
+    width: 826px;
+    min-height: 1169px;
+    /* border: 1px solid #000000; */
+    padding: 50px 10px;
+    display: flex;
+}
+
+.sidebar {
+    width: 30%;
+    box-sizing: border-box;
+    padding: 45px 0;
+    min-height: 1169px;
+    background-color: rgba(48, 188, 173, .7);
+    border-right: 3px solid #a0a0a0;
+    border-radius: 20px;
+}
+
+.sidebar .image-box {
+    
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 168px;
+    height: 206px;
+    margin: 40px auto;
+}
+
+.sidebar .image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+}
+
+.sidebar .personal-info-box {
+    padding: 15px;
+}
+
+.sidebar .personal-info-box .info-item {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.sidebar .personal-info-box p {
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 1px;
+    text-shadow: 0px 0px 2px #000000;
+}
+
+.main {
+    width: 70%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.main h2 {
+    color:  rgba(48, 188, 173, 1);
+    font-size: 20px;
+    display: block;
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(48, 188, 173, 1);
+    line-height: 1.5;
+    letter-spacing: 3px;
+}
+
+.main .title-box {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+}
+
+.main .title-box h1 {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.5;
+    letter-spacing: 8px;
+
+}
+
+.main .education-box {
+    margin-top: 20px;
+}
+
+.main .education-box .education-item {
+    margin: 5px 10px;   
+}
+}
+
+.main .education-box .education-item .name-group {
+    margin-bottom: 5px;
+}
+
+.main .experience-box .experience-item {
+    margin: 5px 10px;
+}
+
+.main .experience-box .experience-item p {
+    margin-bottom: 5px;
+}
+
+.main .certificate-box .certificate-item {
+    margin: 5px 10px;
+}
+
+.main .certificate-box .certificate-item p {
+    margin-bottom: 5px;
+}
+
+.main .coverletter-box .coverletter-item {
+    margin: 5px 10px;
+}
+
+.main .coverletter-box .coverletter-item p {
+    margin-top: 10px;
+}
+
+.main .coverletter-box .coverletter-item h3 {
+    margin-top: 30px;
+    font-size: 20px;
+    border-bottom: 1px solid #000000;
+}
