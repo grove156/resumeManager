@@ -1,0 +1,84 @@
+@import url("common.css") screen;
+
+.body__container {
+    /* background-color: #f1f1f1; */
+    position: relative;
+}
+
+.inner {
+    max-width: 980px;
+    margin: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section--header {
+    background: linear-gradient(to right,#0079bf,#5067c5);
+    position: fixed;
+    width: 100%;
+    top:0;
+    border-bottom: 1px solid #2b0a69;
+    z-index: 1;
+}
+
+.section--header .header {
+    height: 67px;
+    display: flex;
+    justify-content: flex-end;
+    justify-items: center;
+}
+
+.section--header .nav {
+    display: flex;
+    align-items: center;   
+}
+
+.section--header .nav .nav__item {
+    color: #ffffff;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.section--header .nav .nav__item:hover {
+    color: #0079bf;
+    background-color: #ffffff;
+}
+
+.section--main {
+    margin-top: 67px;
+    height: 720px;
+    text-align: center;
+}
+
+.section--main .panel--board {
+    box-sizing: border-box;
+    padding:50px;
+    margin-top:200px;
+    border: 1px solid #858585;
+    
+}
+
+.section--main .title {
+    font-size: 36px;
+    margin-bottom: 30px;
+    line-height: 2;
+    letter-spacing: 5px;
+}
+
+.section--main .input--text {
+    width: 560px;
+}
+
+.section--main .btn-box {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.section--main .btn-box .btn {
+    width: 80px;
+}
