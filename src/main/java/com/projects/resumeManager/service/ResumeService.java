@@ -3,6 +3,7 @@ package com.projects.resumeManager.service;
 import com.projects.resumeManager.domain.entity.Resume;
 import com.projects.resumeManager.domain.entity.User;
 import com.projects.resumeManager.dto.response.ResumeDetailResponse;
+import com.projects.resumeManager.exceptionHandle.exceptions.ResumeListNoExistException;
 import com.projects.resumeManager.repository.ResumeRepository;
 import com.projects.resumeManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,15 @@ public class ResumeService {
 
         List<Resume> resumeList = resumeRepository.findByUser(user);
         //TODO: proper ResumeListNotFound exception
-        if(resumeList.get(0).getId()==null){
-            throw new Exception();
+        if(resumeList.isEmpty()){
+            throw new ResumeListNoExistException("Resume does not exist. Create your resume first!");
         }
 
         List<ResumeDetailResponse> resumeDetailResponseList= new ArrayList();
         for(Resume resume : resumeList){
             ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
                     .id(resume.getId())
-                    .title(resume.getTitle())
+                    .title(resume.getResumeTitle())
                     .createdAt(resume.getCreatedAt())
                     .updatedAt(resume.getUpdatedAt())
                     .user(resume.getUser())
@@ -60,7 +61,7 @@ public class ResumeService {
 
         ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
                 .id(resume.getId())
-                .title(resume.getTitle())
+                .title(resume.getResumeTitle())
                 .createdAt(resume.getCreatedAt())
                 .updatedAt(resume.getUpdatedAt())
                 .user(resume.getUser())
@@ -80,7 +81,7 @@ public class ResumeService {
         User user = userRepository.findById(userId).orElseThrow();
 
         Resume resume = Resume.builder()
-                .title(title)
+                .resumeTitle(title)
                 .user(user)
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -93,7 +94,7 @@ public class ResumeService {
 
         ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
                 .id(savedResume.getId())
-                .title(savedResume.getTitle())
+                .title(savedResume.getResumeTitle())
                 .createdAt(savedResume.getCreatedAt())
                 .user(savedResume.getUser())
                 .build();
@@ -105,14 +106,14 @@ public class ResumeService {
         //TODO: resumeNotFound exception
         Resume resume = resumeRepository.findById(resumeId).orElseThrow();
 
-        resume.setTitle(title);
+        resume.setResumeTitle(title);
 
         Resume savedResume = resumeRepository.save(resume);
 
         ResumeDetailResponse resumeDetailResponse = ResumeDetailResponse.builder()
                 .id(savedResume.getId())
                 .user(savedResume.getUser())
-                .title(savedResume.getTitle())
+                .title(savedResume.getResumeTitle())
                 .createdAt(savedResume.getCreatedAt())
                 .updatedAt(savedResume.getUpdatedAt())
                 .photo(savedResume.getPhoto())

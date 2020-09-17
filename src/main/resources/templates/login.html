@@ -49,9 +49,9 @@
             </div>
 
             <div class="section--login">
-                <form action="#">
-                    <input type="text" class="input--text" placeholder="ID">
-                    <input type="text" class="input--text" placeholder="PW">
+                <form action="/auth/login" method="POST">
+                    <input name="email" type="text" class="input--text" placeholder="Email">
+                    <input name="password"  type="password" class="input--text" placeholder="PW">
                     <button class="btn btn--blue">Login</button>
                 </form>
             </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="section--oauth">
-                <button class="btn btn--red">Login with <i class="fa fa-google" aria-hidden="true"></i></button>
+                <button onclick="location.href='/oauth2/authorization/google'" class="btn btn--red">Login with <i class="fa fa-google" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>    

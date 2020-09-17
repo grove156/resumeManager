@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no maximum-scale=1, minimum-scale=1">
@@ -22,10 +22,10 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
-    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" />
 
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
@@ -50,8 +50,8 @@
         <div class="inner">
             <header class="header">
                 <ul class="nav">
-                    <li ><a class="sign sign-in" href="#">Login</a></li>
-                    <li ><a class="sign sing-up" href="#">Sign in</a></li>
+                    <li ><a class="sign sign-in" th:href="@{/login}" href="/login">Login</a></li>
+                    <li ><a class="sign sing-up" th:href="@{/register}" href="/register">Sign in</a></li>
                 </ul>
             </header>
         </div>
@@ -86,8 +86,9 @@
             </div>
             <div class="slider-group">
                 <ul class="bxslider">
-                    <li><img src="img/yc1.png" alt="image" title="image"></li>
-                    <li><img src="img/yc3.jpg" alt="image" title="image"></li>
+                    <li><img src="img/muscat.jpg" alt="image" title="image"></li>
+                    <li><img src="img/navy.jpg" alt="image" title="image"></li>
+                    <li><img src="img/carrot.jpg" alt="image" title="image"></li>
                 </ul>
             </div>
 

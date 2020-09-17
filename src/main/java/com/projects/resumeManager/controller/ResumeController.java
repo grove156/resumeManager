@@ -26,14 +26,18 @@ public class ResumeController {
     @Autowired
     ResumeService resumeService;
 
+    //for update
     @GetMapping("/resume/{resumeId}")
-    public void getResumeDetailForUpdate(@PathVariable Long resumeId,
+    public String getResumeDetailForUpdate(@PathVariable Long resumeId,
                                          Model model) throws Exception {
         ResumeDetailResponse resumeDetailResponse = resumeService.getResumeDetail(resumeId);
 
         model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+
+        return "updateResume";
     }
 
+    //for display
     @GetMapping("/resume/{resumeId}/{templateId}")
     public String getResume(@PathVariable Long resumeId,
                           @PathVariable Long templateId,
@@ -43,6 +47,12 @@ public class ResumeController {
         model.addAttribute("resumeDetailResponse", resumeDetailResponse);
 
         return "";//TODO:create "/resume/{resumeId}/{templateID}" template with resume detail data
+    }
+
+    @GetMapping("/{userId}/resume")
+    public String resumeCreatePage(){
+
+        return "createResume";
     }
 
     @PostMapping("/{userId}/resume")

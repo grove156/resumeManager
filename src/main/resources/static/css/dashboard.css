@@ -67,6 +67,19 @@ a {
     border-bottom: 2px solid #000000;
 }
 
+.section--main .panel .err-msg-box {
+    width: 100%;
+    text-align: center;
+    margin: 30px 20px 60px 20px;
+}
+
+.section--main .panel .err-msg {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    
+}
+
 .section--main .panel .resume-lists {
     display: flex;
     flex-wrap: wrap;

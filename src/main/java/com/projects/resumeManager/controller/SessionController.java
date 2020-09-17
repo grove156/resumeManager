@@ -1,7 +1,9 @@
 package com.projects.resumeManager.controller;
 
 import com.projects.resumeManager.domain.entity.User;
+import com.projects.resumeManager.dto.SessionUser;
 import com.projects.resumeManager.dto.response.ResumeDetailResponse;
+import com.projects.resumeManager.exceptionHandle.exceptions.ResumeListNoExistException;
 import com.projects.resumeManager.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,18 +35,16 @@ public class SessionController {
     }
 
     @GetMapping("/dashboard")
-    public String dashboard(Model model) throws Exception {
-        User user = (User)httpSession.getAttribute("user");
-
-        if(user == null){
+    public String dashboard(Model model) throws Exception, ResumeListNoExistException {
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        if(sessionUser == null){
             //TODO: replace with SessionExpiredException
             throw new Exception();
         }
 
-        List<ResumeDetailResponse> resumeList = resumeService.getResumeList(user.getId());
-
+        List<ResumeDetailResponse> resumeList = resumeService.getResumeList(sessionUser.getId());
         model.addAttribute("resumeList",resumeList);
-
+        model.addAttribute("user", sessionUser);
         return "dashboard";
     }
 

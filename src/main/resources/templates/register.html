@@ -22,8 +22,8 @@
     <meta property="twitter:url" content="#">
 
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/register.css">
+    <!-- <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/register.css"> -->
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/register.css}" rel="stylesheet" />
 
@@ -40,6 +40,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <script defer type="text/javascript" th:src="@{/js/register.js}"></script>
 </head>
 <body>
 <div class="body__container">
@@ -50,22 +51,22 @@
             </div>
 
             <div class="section--form">
-                <form action="#">
-                    <label class="label" for="">Email <i>*</i></label>
-                    <input type="text" class="input--text" placeholder="Example@example.com">
-                    <label class="label" for="">Password <i>*</i></label>
-                    <input type="password" class="input--text" placeholder="Password">
-                    <label class="label" for="">Password Confirm <i>*</i></label>
-                    <input type="password" class="input--text" placeholder="Password confirm">
-                    <label class="label" for="">Full name <i>*</i></label>
-                    <input type="text" class="input--text" placeholder="John Doe">
-                    <label class="label" for="">Date of Birth <i>*</i></label>
+                <form>
+                    <label class="label" for="email">Email <i>*</i></label>
+                    <input id="email" type="text" class="input--text" placeholder="Example@example.com">
+                    <label class="label" for="password">Password <i>*</i></label>
+                    <input id="password" type="password" class="input--text" placeholder="Password">
+                    <label class="label" for="password-confirm">Password Confirm <i>*</i></label>
+                    <input id="password-confirm" type="password" class="input--text" placeholder="Password confirm">
+                    <label class="label" for="name">Full name <i>*</i></label>
+                    <input id="name" type="text" class="input--text" placeholder="John Doe">
+                    <label class="label" for="datepicker">Date of Birth <i>*</i></label>
                     <input id="datepicker" type="text" class="input--text" placeholder="MM/DD/YYYY">
-                    <label class="label" for="">Phone number <i>*</i></label>
-                    <input type="text" class="input--text" placeholder="0410-123-456">
-                    <button class="btn btn--blue">Sign in</button>
-                    <button class="btn" type="reset">Reset</button>
+                    <label class="label" for="phone_number">Phone number <i>*</i></label>
+                    <input id="phone_number" type="text" class="input--text" placeholder="0410-123-456">
                 </form>
+                    <button id="submit-button" class="btn btn--blue">Sign in</button>
+                    <button class="btn" type="reset">Reset</button>
             </div>
         </div>
    </div>

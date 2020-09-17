@@ -22,10 +22,12 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public String createUser(@RequestBody @Valid UserCreateRequest resource, Model model){
+    @ResponseBody
+    public User createUser(@RequestBody UserCreateRequest resource ){
+        System.out.println(resource);
         User savedUser = userService.createUser(resource);
-        model.addAttribute("user", savedUser);
-        return "login";
+//        model.addAttribute("user", savedUser);
+        return savedUser;
     }
 
     @GetMapping("/user/{id}")

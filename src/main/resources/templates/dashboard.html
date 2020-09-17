@@ -39,6 +39,9 @@
 
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- ajax & functions -->
+    <script type="text/javascript" th:src="@{/js/dashboard.js}"></script>
 </head>
 <body>
 <div class="body__container">
@@ -46,9 +49,9 @@
         <div class="inner">
             <header class="header">
                 <ul class="nav">
-                    <li ><a class="nav__item nav-user" href="#">Myeongkeun Kim</a></li>
-                    <li ><a class="nav__item nav__dashboard" href="#">Dashboard</a></li>
-                    <li ><a class="nav__item nav-logout" href="#">Logout</a></li>
+                    <li ><a class="nav__item nav-user" th:href="@{#}" th:text="${user.name}"></a></li>
+                    <li ><a class="nav__item nav__dashboard" th:href="@{/dashboard}">Dashboard</a></li>
+                    <li ><a class="nav__item nav-logout" th:href="@{/logout}">Logout</a></li>
                 </ul>
             </header>
         </div>
@@ -57,25 +60,29 @@
     <section class="section section--main">
         <div class="inner">
             <div class="panel">
-                <h1 class="title">
-                    Resumes - Myeongkeun Kim
+                <h1 class="title" th:text="${'Resumes - ' + user.name}">
                 </h1>
 
-                <div class="resume-lists">
+                <div class="err-msg-box" th:if="${exceptionMsg}">
+                    <p class="err-msg" th:text="${exceptionMsg}"></p>
+                </div>
+
+                <div th:if="${resumeList}" class="resume-lists">
                     <!-- fix it to iterate later -->
-                    <div class="resume-item">
+                    <div th:each="resume : ${resumeList}" class="resume-item">
                         <div class="resume-title">
-                            <p>My first resume</p>
+                            <p th:text="${resume.title}"></p>
                         </div>
                         <div class="resume-image">
-                            <img class="img" src="../static/img/resume-img4.png" alt="iamge">
+                            <a th:href="@{/resume/${resume.id}}">
+                                <img class="img" src="img/resume-img4.png" alt="iamge">
+                            </a>
                         </div>
-                        <div class="button-group">
-                            <button class="btn">Update</button>
-                            <button class="btn">Delete</button>
+                        <div class="button-group">  
+                            <button id="update-button" th:onclick class="btn">Update</button>
+                            <button id="delete-button" class="btn">Delete</button>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -99,7 +106,7 @@
             <h1>Resume Manager</h1>
         </div>
         <div class="sidebar__img">
-            <img class="profile-img" src="../static/img/meng.jpg" alt="">
+            <img class="profile-img" src="img/meng.jpg" alt="">
             <h1>YC Choi</h1>
         </div>
 

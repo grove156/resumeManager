@@ -21,7 +21,7 @@ public class Resume {
     private Long id;
 
     @NotEmpty
-    private String title;
+    private String resumeTitle;
 
     @NotNull
     private LocalDateTime createdAt;

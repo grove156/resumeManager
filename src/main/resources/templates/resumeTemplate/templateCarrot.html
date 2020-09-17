@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>navy</title>
+    <title>Carrot</title>
     <!--Custom CSS-->
     <link rel="stylesheet" href="../../static/css/reset.css">
-    <link rel="stylesheet" href="../../static/css/templateNavy.css">
+    <link rel="stylesheet" href="../../static/css/templateCarrot.css">
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
-    <link th:href="@{/css/templateNavy.css}" rel="stylesheet" />
+    <link th:href="@{/css/templateCarrot.css}" rel="stylesheet" />
 
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@
     <script src="../../static/js/jspdf.min.js"></script>
     <script defer src="../../static/js/toPdf.js"></script>
 </head>
-</html>
 <body>
 <div class="body__container">
     <div class="section--btn">
@@ -36,10 +35,40 @@
 
     <div id="pdfDiv" class="root">
         <div class="section--title">
-            <h1>Myeongkeun Kim</h1>
+            <div class="image-box">
+                <img src="../../static/img/yc1.png" alt="">
+            </div>
+            <div class="title-box">
+                <h1>Myeongkeun Kim</h1>
+            </div>
         </div>
 
-        <div class="section--main">
+        <div class="sections section--info">
+            <h2>Personal Information</h2>
+            <div class="personal-info-box">
+                <div class="info-item">
+                    <p><i class="fa fa-user" aria-hidden="true"></i> : </p>
+                    <p>Myeongkeun Kim</p>
+                </div>
+    
+                <div class="info-item">
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> : </p>
+                    <p>010-1111-2222</p>
+                </div>
+    
+                <div class="info-item">
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> : </p>
+                    <p>grove156@gmail.com</p>
+                </div>
+    
+                <div class="info-item">
+                    <p>Date of Birth: </p>
+                    <p>1989/07/08</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sections section--main">
             <div class="main-content">
                 <div class="education-box">
                     <h2>Educations</h2>
@@ -103,33 +132,6 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="sidebar">
-                <div class="image-box">
-                    <img src="../../static/img/yc1.png" alt="">
-                </div>
-                <div class="personal-info-box">
-                    <div class="info-item">
-                        <p><i class="fa fa-user" aria-hidden="true"></i> : </p>
-                        <p>Myeongkeun Kim</p>
-                    </div>
-        
-                    <div class="info-item">
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> : </p>
-                        <p>010-1111-2222</p>
-                    </div>
-        
-                    <div class="info-item">
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i> : </p>
-                        <p>grove156@gmail.com</p>
-                    </div>
-        
-                    <div class="info-item">
-                        <p>Date of Birth: </p>
-                        <p>1989/07/08</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
