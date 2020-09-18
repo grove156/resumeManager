@@ -31,7 +31,7 @@ public class Photo {
     @NotNull
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "photo")
+    @OneToOne
     private Resume resume;
 
     

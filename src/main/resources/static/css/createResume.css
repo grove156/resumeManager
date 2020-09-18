@@ -77,6 +77,8 @@ a {
 .section--main .btn-box {
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 100px;
 }
 
 .section--main .btn-box .btn {

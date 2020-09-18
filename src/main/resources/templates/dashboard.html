@@ -23,8 +23,8 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <!-- <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css"> -->
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/dashboard.css}" rel="stylesheet" />
 
@@ -79,15 +79,15 @@
                             </a>
                         </div>
                         <div class="button-group">  
-                            <button id="update-button" th:onclick class="btn">Update</button>
-                            <button id="delete-button" class="btn">Delete</button>
+                            <button id="update-button" th:onclick="'window.location.href = \'' + @{/resume/{resumeId}(resumeId=${resume.id})} + '\''" class="btn">Update</button>
+                            <button id="delete-button" th:onclick="'deleteResume(\'' + ${resume.id} + '\',\'' + ${user.id} + '\');'" class="btn">Delete</button>
                         </div>
                     </div>
                 </div>
 
 
                 <div class="new-resume">
-                    <button class="btn btn--blue">Add <i class="fa fa-file-text" aria-hidden="true"></i></button>
+                    <button th:onclick="'window.location.href = \'' + @{/{userId}/resume(userId=${user.id})} + '\''" class="btn btn--blue">Add <i class="fa fa-file-text" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="sidebar__img">
             <img class="profile-img" src="img/meng.jpg" alt="">
-            <h1>YC Choi</h1>
+            <h1 th:text="${user.name}"></h1>
         </div>
 
         <div class="menu">
@@ -115,7 +115,7 @@
                 <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> User Detail</a></li>
                 <li><a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> Resume Template</a></li>
                 <li><a href="#"><i class="fa fa-archive" aria-hidden="true"></i> Our Service</a></li>
-                <li><a href="#"><i class="fa fa-window-close" aria-hidden="true"></i> Logout</a></li>
+                <li><a th:href="@{/logout}"><i class="fa fa-window-close" aria-hidden="true"></i> Logout</a></li>
             </ul>
         </div>
     </section>

@@ -31,7 +31,7 @@ public class Resume {
     @ManyToOne
     private User user;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "resume")
     private Photo photo;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "resume")

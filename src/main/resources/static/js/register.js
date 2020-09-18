@@ -16,8 +16,6 @@ var main = {
                 phone_number: $("#phone_number").val()
             };
 
-            console.log(data);
-
             $.ajax({
                 type: 'POST',
                 url: '/register',

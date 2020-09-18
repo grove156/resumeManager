@@ -23,8 +23,8 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/createResume.css">
+    <!-- <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/createResume.css"> -->
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/createResume.css}" rel="stylesheet" />
 
@@ -39,6 +39,9 @@
 
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- ajax & functions -->
+    <script defer type="text/javascript" th:src="@{/js/createResume.js}"></script>
 </head>
 <body>
 <div class="body__container">
@@ -47,8 +50,8 @@
             <header class="header">
                 <ul class="nav">
                     <li ><a class="nav__item nav-user" href="#">Myeongkeun Kim</a></li>
-                    <li ><a class="nav__item nav__dashboard" href="#">Dashboard</a></li>
-                    <li ><a class="nav__item nav-logout" href="#">Logout</a></li>
+                    <li ><a class="nav__item nav__dashboard" th:href="@{/dashboard}">Dashboard</a></li>
+                    <li ><a class="nav__item nav-logout" th:href="@{/logout}">Logout</a></li>
                 </ul>
             </header>
         </div>
@@ -61,12 +64,13 @@
                 <form>
                     <label for="resume-title">Resume title : </label>
                     <input id="resume-title" type="text" class="input--text" placeholder="Your resume title">
-                    
+                    <input id="user-id" type="hidden" th:value="${user.id}">
+                </form>
                     <div class="btn-box">
-                        <button class="btn btn--blue">next</button>
+                        <button id="submit-button" class="btn btn--blue">next</button>
                     </div>
                     
-                </form>         
+
             </div>
         </div>
     </section>

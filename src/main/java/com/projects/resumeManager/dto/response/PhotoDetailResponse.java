@@ -1,10 +1,7 @@
 package com.projects.resumeManager.dto.response;
 
 import com.projects.resumeManager.domain.entity.Resume;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@Getter
 public class PhotoDetailResponse {
 
     private Long id;

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
+@Getter
 public class CoverletterDetailResponse {
 
     private Long id;

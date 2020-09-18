@@ -50,19 +50,26 @@ public class ResumeController {
     }
 
     @GetMapping("/{userId}/resume")
-    public String resumeCreatePage(){
+    public String resumeCreatePage(Model model) throws Exception {
 
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        if(sessionUser == null){
+            //TODO: replace with SessionExpiredException
+            throw new Exception();
+        }
+
+        model.addAttribute("user", sessionUser);
         return "createResume";
     }
 
     @PostMapping("/{userId}/resume")
-    public void createResume(@PathVariable(value = "userId") Long userId,
-                             @RequestBody String title,
-                             Model model){
+    @ResponseBody
+    public ResumeDetailResponse createResume(@PathVariable(value = "userId") Long userId,
+                             @RequestBody String title){
 
         ResumeDetailResponse resumeDetailResponse = resumeService.createResume(userId, title);
 
-        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+        return resumeDetailResponse;
     }
 
     @PatchMapping("/{userId}/resume/{resumeId}")
