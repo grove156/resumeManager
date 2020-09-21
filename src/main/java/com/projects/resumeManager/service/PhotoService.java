@@ -109,7 +109,7 @@ public class PhotoService {
         File uploadPath = new File(baseDir);
 
         String uploadFileName = uploadFile.getOriginalFilename()+"_"+uuid.toString();
-        String uoloadFileSize = fileSizeToMb(uploadFile.getSize());
+        String uploadFileSize = fileSizeToMb(uploadFile.getSize());
 
         File saveFile = new File(uploadPath, uploadFileName);
 
@@ -118,7 +118,7 @@ public class PhotoService {
             PhotoCreateRequest photoCreateRequest = PhotoCreateRequest.builder()
                     .photoTitle(uploadFileName)
                     .url("../static/ProfileImg/"+uploadFileName)
-                    .fileSize(uoloadFileSize)
+                    .fileSize(uploadFileSize)
                     .createdAt(LocalDateTime.now())
                     .build();
             return photoCreateRequest;

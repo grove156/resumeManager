@@ -69,6 +69,42 @@ td {
     text-align: center;
 }
 
+.update-button-box {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.update-button-box .update-button {
+    margin-left: 10px;
+}
+/* MODAL SECTIONS */
+.modal-container {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 20px;
+}
+
+.modal-container .modal1 {
+    position: fixed;
+    width: 560px;
+    background-color: #ffffff;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+}
+
+.modal-container .modal1 label i{
+    color: #ff0000;
+}
+
+/* MAIN SECTIONS */
 .section--header {
     background: linear-gradient(to right,#0079bf,#5067c5);
     position: fixed;
@@ -125,6 +161,16 @@ td {
     border-radius: 4px;
     margin-top: 20px;
     padding: 20px;
+}
+
+.section--main .panel .resume-items .err-msg-box {
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+}
+
+.section--main .panel .resume-items .err-msg-box .err-msg {
+    font-size: 20px;
 }
 
 .section--main .panel .photo-group .image-box {

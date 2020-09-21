@@ -15,22 +15,18 @@ var main = {
 
         var userId = $("#user-id").val();
 
-        console.log(userId);
-
         $.ajax({
             type: 'POST',
             url: '/' + userId +'/resume',
-            dataType: 'json',
+            dataType: 'text',
             contentType: "application/json; charset=utf-8",
             data: title
         }).done(function(){
-            alert('successfully created!');
+            alert('your resume has been successfully created!');
             window.location.href = '/dashboard';
+        }).fail(function(e){
+            alert("pleas try again, your resume not created for some reason");
         });
- 
-        // .fail(function(error){
-        //     alert(JSON.stringify(error));
-        // })
     }
 };
 

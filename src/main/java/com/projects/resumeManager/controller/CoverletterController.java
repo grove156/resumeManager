@@ -44,11 +44,12 @@ public class CoverletterController {
         return coverletterDetailResponse;
     }
 
+    @ResponseBody
     @DeleteMapping("/resume/{resumeId}/coverletter/{coverletterId}")
-    public ResponseEntity<?> deleteCoverletter(@PathVariable(value = "resumeId") Long resumeId,
+    public String deleteCoverletter(@PathVariable(value = "resumeId") Long resumeId,
                                                @PathVariable(value = "coverletterId") Long coverletterId){
         coverletterService.deleteCoverletter(resumeId, coverletterId);
 
-        return ResponseEntity.status(HttpStatus.OK).body("{}");
+        return "sucess";
     }
 }

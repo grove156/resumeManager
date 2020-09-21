@@ -39,22 +39,88 @@
 
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-
-    <!-- pdf printing
-    <script src="../static/js/html2canvas.js"></script>
-    <script src="../static/js/jspdf.min.js"></script> -->
+    <!-- 스타일관련 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
+    <!-- 자바스크립트관련 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
+    <!-- 한글관련 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/lang/summernote-ko-KR.min.js"></script>
 
 </head>
 <body>
 <div class="body__container">
+    <div class="modal-container">
+        <div class="modal1 education--modal">
+            <form>
+                <label for="studyAt">School <i>*</i></label>
+                <input id="studyAt" type="text" class="input--text" placeholder="School">
+                <label for="major">Major</label>
+                <input id="major" type="text" class="input--text" placeholder="Major">
+                <label for="startDate">Start Date <i>*</i></label>
+                <input id="startDate" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="endDate">End Date</label>
+                <input id="endDate" type="text" class="datepicker input--text" placeholder="end date">
+            </form>
+            <button id="updateEducation" class="btn btn--blue">update</button>
+            <button id="cancelEducation" class="btn">cancel</button>
+        </div>
+
+        <div class="modal1 experience-modal">
+            <form>
+                <label for="workAt">Company <i>*</i></label>
+                <input id="workAt" type="text" class="input--text" placeholder="Company">
+                <label for="position">Position <i>*</i></label>
+                <input id="position" type="text" class="input--text" placeholder="Position">
+                <label for="role">Role</label>
+                <input id="role" type="text" class="input--text" placeholder="Role">
+                <label for="startDate">Start Date <i>*</i></label>
+                <input id="startDate" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="endDate">End Date</label>
+                <input id="endDate" type="text" class="datepicker input--text" placeholder="end date">
+            </form>
+            <button id="updateEducation" class="btn btn--blue">update</button>
+            <button id="cancelEducation" class="btn">cancel</button>
+        </div>
+
+        <div class="modal1 certificate-modal">
+            <form>
+                <label for="certificateTitle">certificate title <i>*</i></label>
+                <input id="certificateTitle" type="text" class="input--text" placeholder="certificate title">
+                <label for="score">score(level)</label>
+                <input id="score" type="text" class="input--text" placeholder="score or level">
+                <label for="validDuration">valid duration</label>
+                <input id="role" type="text" class="input--text" placeholder="2 years">
+                <label for="issueDate">issued date <i>*</i></label>
+                <input id="issueDate" type="text" class="datepicker input--text" placeholder="issued date">
+            </form>
+            <div class="button-box">
+                <button id="updateEducation" class="btn btn--blue">update</button>
+                <button id="cancelEducation" class="btn">cancel</button>
+            </div>
+        </div>
+
+        <div class="modal1 coverletter-modal">
+            <form>
+                <label for="coverletterTitle">CV title <i>*</i></label>
+                <input id="certificateTitle" type="text" class="input--text" placeholder= "cover letter title">
+                <label for="converletterContent">CV content <i>*</i></label>
+                <input id="converletterContent" type="text" class="input--text" placeholder="cover letter content">
+            </form>
+        </div>
+    </div>
+
+
     <section class="section section--header">
         <div class="inner">
             <header class="header">
                 <ul class="nav">
-                    <li ><a class="nav__item nav-user" href="#">Myeongkeun Kim</a></li>
-                    <li ><a class="nav__item nav__dashboard" href="#">Dashboard</a></li>
-                    <li ><a class="nav__item nav-logout" href="#">Logout</a></li>
+                    <li ><a class="nav__item nav-user" th:href="@{#}" th:text="${user.name}"></a></li>
+                    <li ><a class="nav__item nav__dashboard" th:href="@{/dashboard}">Dashboard</a></li>
+                    <li ><a class="nav__item nav-logout" th:href="@{/logout}">Logout</a></li>
                 </ul>
             </header>
         </div>
@@ -70,7 +136,7 @@
                 
                 <div class="resume-items title-group">
                     <h1 class="labels">Resume title :</h1>
-                    <input type="text" class="input--text" value="">
+                    <input type="text" class="input--text" th:value="${resume.title}">
                     <div class="btn-box">
                         <button class="btn btn--blue">update</button>
                     </div>
@@ -79,7 +145,8 @@
                 <div class="resume-items photo-group">
                     <h1 class="labels">Profile photo :</h1>
                     <div class="image-box">
-                        <img src="../static/img/yc1.png" alt="" class="profile">
+                        <img th:if="${resume.photo}" th:src="@{/img/{imgTitle}(imgTitle=${resume.photo.photoTitle})}" alt="profile" class="profile">
+                        <p th:unless="${resume.photo}">no profile image!</p>
                     </div>
                     <input id="photo-upload"type="file">
                     <div class="btn-box">
@@ -96,12 +163,20 @@
                                 <th>major</th>
                                 <th></th>
                             </tr>
-                            <tr>
-                                <td>Swinburne University of Technology</td>
-                                <td>Computer Science</td>
-                                <td><button class="btn">update</button></td>
+                            <tr th:if="${resume.educationList}" th:each="education : ${resume.educationList}">
+                                <td th:text="${education.studyAt}"></td>
+                                <td th:text="${education.major}"></td>
+                                <td class="update-button-box">
+                                    <button class="btn update-button">update</button>
+                                    <button th:onclick="'deleteEducation(\'' + ${education.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
+                                </td>
                             </tr>
                         </table>
+                        <div class="err-msg-box" th:if="${resume.educationList == null}">
+                            <p class="err-msg">
+                                no education field! please add your education!
+                            </p>
+                        </div>
                     </div>
                     <div class="add-btn-box">
                         <button class="btn btn--blue">Add</button>
@@ -111,7 +186,26 @@
                 <div class="resume-items">
                     <h1 class="labels">Experience :</h1>
                     <div class="expereince-group">
-
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Position</th>
+                                <th></th>
+                            </tr>
+                            <tr th:if="${resume.experienceList}" th:each="experience : ${resume.experienceList}">
+                                <td th:text="${experience.workAt}"></td>
+                                <td th:text="${experience.position}"></td>
+                                <td class="update-button-box">
+                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'deleteExperience(\'' + ${experience.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="err-msg-box" th:if="${resume.experienceList == null}">
+                            <p class="err-msg">
+                                no experience field! please add your experience!
+                            </p>
+                        </div>
                     </div>
                     <div class="add-btn-box">
                         <button class="btn btn--blue">Add</button>
@@ -121,7 +215,26 @@
                 <div class="resume-items">
                     <h1 class="labels">Ceritificate :</h1>
                     <div class="certificate-group">
-
+                        <table>
+                            <tr>
+                                <th>Certificate Title</th>
+                                <th>Score</th>
+                                <th></th>
+                            </tr>
+                            <tr th:if="${resume.certificateList}" th:each="certificate : ${resume.certificateList}">
+                                <td th:text="${certificate.certificateTitle}"></td>
+                                <td th:text="${certificate.score}"></td>
+                                <td class="update-button-box">
+                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'deleteCertificate(\'' + ${certificate.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="err-msg-box" th:if="${resume.certificateList == null}">
+                            <p class="err-msg">
+                                no certificate field! please add your certificate!
+                            </p>
+                        </div>
                     </div>
                     <div class="add-btn-box">
                         <button class="btn btn--blue">Add</button>
@@ -131,6 +244,24 @@
                 <div class="resume-items">
                     <h1 class="labels">Coverletter :</h1>
                     <div class="coverletter-group">
+                        <table>
+                            <tr>
+                                <th>Coverletter Title</th>
+                                <th></th>
+                            </tr>
+                            <tr th:if="${resume.coverletterList}" th:each="coverletter : ${resume.coverletterList}">
+                                <td th:text="${coverletter.title}"></td>
+                                <td class="update-button-box">
+                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'deleteCoverletter(\'' + ${coverletter.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="err-msg-box" th:if="${resume.coverletterList == null}">
+                            <p class="err-msg">
+                                no CV field! please add your cover letter!
+                            </p>
+                        </div>
 
                     </div>
                     <div class="add-btn-box">
@@ -142,4 +273,17 @@
         </div>
     </section>
 </div>
+<script>
+    $( function() {
+      $( ".datepicker" ).datepicker();
+
+    } );
+
+    $(document).ready(function(){
+        $('#converletterContent').summernote({
+            lang: 'ko-KR',
+            height: 300,
+        });
+    });
+</script>
 </body>

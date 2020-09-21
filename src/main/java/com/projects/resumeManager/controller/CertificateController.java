@@ -44,11 +44,12 @@ public class CertificateController {
         return certificateDetailResponse;
     }
 
+    @ResponseBody
     @DeleteMapping("/resume/{resumeId}/education/{certificateId}")
-    public ResponseEntity<?> deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
+    public String deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
                                                @PathVariable(value = "certificateId") Long certificateId){
         certificateService.deleteCertificate(resumeId, certificateId);
 
-        return ResponseEntity.status(HttpStatus.OK).body("{}");
+        return "success!";
     }
 }

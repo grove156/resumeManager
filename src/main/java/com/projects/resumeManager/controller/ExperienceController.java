@@ -43,12 +43,13 @@ public class ExperienceController {
         return experienceDetailResponse;
     }
 
+    @ResponseBody
     @DeleteMapping("/resume/{resumeId}/experience/{experienceId}")
-    public ResponseEntity<?> deleteExperience(@PathVariable Long resumeId,
+    public String deleteExperience(@PathVariable Long resumeId,
                                  @PathVariable Long experienceId){
 
         experienceService.deleteExperience(resumeId, experienceId);
 
-        return ResponseEntity.status(HttpStatus.OK).body("{}");
+        return "success";
     }
 }

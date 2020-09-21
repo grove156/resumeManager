@@ -30,9 +30,17 @@ public class ResumeController {
     @GetMapping("/resume/{resumeId}")
     public String getResumeDetailForUpdate(@PathVariable Long resumeId,
                                          Model model) throws Exception {
+
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        if(sessionUser == null){
+            //TODO: replace with SessionExpiredException
+            throw new Exception();
+        }
+
         ResumeDetailResponse resumeDetailResponse = resumeService.getResumeDetail(resumeId);
 
-        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+        model.addAttribute("resume", resumeDetailResponse);
+        model.addAttribute("user", sessionUser);
 
         return "updateResume";
     }
@@ -62,8 +70,8 @@ public class ResumeController {
         return "createResume";
     }
 
-    @PostMapping("/{userId}/resume")
     @ResponseBody
+    @PostMapping("/{userId}/resume")
     public ResumeDetailResponse createResume(@PathVariable(value = "userId") Long userId,
                              @RequestBody String title){
 
@@ -82,10 +90,13 @@ public class ResumeController {
         model.addAttribute("resumeDetailResponse", resumeDetailResponse);
     }
 
+    @ResponseBody
     @DeleteMapping("/{userId}/resume/{resumeId}")
-    public void deleteResume(@PathVariable(value = "userId") Long userId,
-                             @PathVariable(value = "userId") Long resumeId){
+    public String deleteResume(@PathVariable(value = "userId") Long userId,
+                             @PathVariable(value = "resumeId") Long resumeId){
         resumeService.deleteResume(userId, resumeId);
+
+        return "success!";
     }
 
 }

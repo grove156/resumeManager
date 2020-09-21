@@ -45,12 +45,13 @@ public class EducationContoller {
         return educationDetailResponse;
     }
 
+    @ResponseBody
     @DeleteMapping("/resume/{resumeId}/education/{educationId}")
-    public ResponseEntity<?> deleteEducation(@PathVariable(value = "resumeId") Long resumeId,
+    public String deleteEducation(@PathVariable(value = "resumeId") Long resumeId,
                                 @PathVariable(value = "educationId") Long educationId){
         educationService.deleteEducation(resumeId, educationId);
 
-        return ResponseEntity.status(HttpStatus.OK).body("{}");
+        return "success";
     }
 
 

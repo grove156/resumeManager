@@ -74,7 +74,7 @@
                             <p th:text="${resume.title}"></p>
                         </div>
                         <div class="resume-image">
-                            <a th:href="@{/resume/${resume.id}}">
+                            <a th:href="@{/resume/{resumeId}(resumeId=${resume.id})}">
                                 <img class="img" src="img/resume-img4.png" alt="iamge">
                             </a>
                         </div>
