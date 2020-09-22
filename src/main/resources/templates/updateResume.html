@@ -23,8 +23,8 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/updateResume.css">
+    <!-- <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/updateResume.css"> -->
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/updateResume.css}" rel="stylesheet" />
 
@@ -37,28 +37,97 @@
     <!-- Jqeury -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+        
+
+    <!-- COUSTOM JS -->
+    <script type="text/javascript" th:src="@{/js/updateResume.js}"></script>
+    <!-- <script type="text/javascript" src="../static/js/updateResume.js"></script> -->
+
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- 스타일관련 -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
     <!-- 자바스크립트관련 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
     <!-- 한글관련 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/lang/summernote-ko-KR.min.js"></script>
-
-
-    <!-- COUSTOM JS -->
-    <script type="text/javascript" th:src="@{/js/updateResume.js}"></script>
-    <script type="text/javascript" src="../static/js/updateResume.js"></script>
 </head>
 <body>
     
 <div class="body__container">
     <div class="modal-container">
+        <!-- modal for create -->
+        <div class="modal1 education--creation">
+            <form>
+                <label for="studyAt--creation">School <i>*</i></label>
+                <input id="studyAt--creation" type="text" class="input--text" placeholder="School">
+                <label for="major--creation">Major</label>
+                <input id="major--creation" type="text" class="input--text" placeholder="Major">
+                <label for="schoolStart--creation">Start Date <i>*</i></label>
+                <input id="schoolStart--creation" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="schoolEnd--creation">End Date</label>
+                <input id="schoolEnd--creation" type="text" class="datepicker input--text" placeholder="end date">
+            </form>
+            <div class="button-box">
+                <button th:onclick="'createEducationAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button class="btn cancel">cancel</button>
+            </div>
+        </div>
+        
+        <div class="modal1 experience--creation">
+            <form>
+                <label for="workAt--creation">Company <i>*</i></label>
+                <input id="workAt--creation" type="text" class="input--text" placeholder="Company">
+                <label for="position--creation">Position <i>*</i></label>
+                <input id="position--creation" type="text" class="input--text" placeholder="Position">
+                <label for="role--creation">Role</label>
+                <input id="role--creation" type="text" class="input--text" placeholder="Role">
+                <label for="companyStart--creation">Start Date <i>*</i></label>
+                <input id="companyStart--creation" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="companyEnd--creation">End Date</label>
+                <input id="companyEnd--creation" type="text" class="datepicker input--text" placeholder="end date">
+            </form>
+            <div class="button-box">
+                <button  th:onclick="'createExperienceAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button  class="btn cancel">cancel</button>
+            </div>
+        </div>
+        
+        <div class="modal1 certificate--creation">
+            <form>
+                <label for="certificateTitle--creation">certificate title <i>*</i></label>
+                <input id="certificateTitle--creation" type="text" class="input--text" placeholder="certificate title">
+                <label for="score--creation">score(level)</label>
+                <input id="score--creation" type="text" class="input--text" placeholder="score or level">
+                <label for="validDuration--creation">valid duration</label>
+                <input id="validDuration--creation" type="text" class="input--text" placeholder="2 years">
+                <label for="issueDate--creation">issued date <i>*</i></label>
+                <input id="issueDate--creation" type="text" class="datepicker input--text" placeholder="issued date">
+            </form>
+            <div class="button-box">
+                <button th:onclick="'createCertificateAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button class="btn cancel">cancel</button>
+            </div>
+        </div>
+
+        <div class="modal1 coverletter--creation">
+            <form>
+                <label for="coverletterTitle--creation">CV title <i>*</i></label>
+                <input id="coverletterTitle--creation" type="text" class="input--text" placeholder= "cover letter title">
+                <label for="converletterContent--creation">CV content <i>*</i></label>
+                <input id="converletterContent--creation" type="text" class="input--text" placeholder="cover letter content">
+            </form>
+            <div class="button-box">
+                <button th:onclick="'createCoverletterAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button class="btn cancel">cancel</button>
+            </div>
+        </div>
+
+        <!-- modal for update -->
         <div class="modal1 education--modal">
             <form>
                 <label for="studyAt">School <i>*</i></label>
@@ -155,7 +224,7 @@
                     <h1 class="labels">Resume title :</h1>
                     <input type="text" class="input--text" th:value="${resume.title}">
                     <div class="btn-box">
-                        <button class="btn btn--blue">update</button>
+                        <button id="resumeTitleUpdate" th:onclick="'resumeTitleUpdate(\'' + ${user.id} + '\',\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
                     </div>
                 </div>
 
@@ -196,7 +265,7 @@
                         </div>
                     </div>
                     <div class="add-btn-box">
-                        <button class="btn btn--blue">Add</button>
+                        <button id="createEducation" class="btn btn--blue">Add</button>
                     </div>
                 </div>
 
@@ -224,7 +293,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="add-btn-box">
+                    <div id="createExperience" class="add-btn-box">
                         <button class="btn btn--blue">Add</button>
                     </div>
                 </div>
@@ -254,7 +323,7 @@
                         </div>
                     </div>
                     <div class="add-btn-box">
-                        <button class="btn btn--blue">Add</button>
+                        <button id="createCertificate" class="btn btn--blue">Add</button>
                     </div>
                 </div>
 
@@ -282,7 +351,7 @@
 
                     </div>
                     <div class="add-btn-box">
-                        <button class="btn btn--blue">Add</button>
+                        <button id="createCoverletter" class="btn btn--blue">Add</button>
                     </div>
                 </div>
 
@@ -291,22 +360,25 @@
     </section>
 </div>
 <script>
-    $.fn.datepicker.noConflict = function(){
-        $.fn.datepicker = old;
-        return this;
-    };
-
     $(document).ready(function(){
-        $('#converletterContent').summernote({
-            lang: 'ko-KR',
-            height: 300,
-        });
-
         $('.datepicker').each(function(){
             $(this).datepicker({
                 dateFormat: "yy-mm-dd"
             });
         });
     });
+
+    $('#converletterContent').summernote({
+            lang: 'ko-KR',
+            height: 300,
+    });
+
+    $('#converletterContent--creation').summernote({
+            lang: 'ko-KR',
+            height: 300,
+    });
+    
+
 </script>
+
 </body>

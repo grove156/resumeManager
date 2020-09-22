@@ -33,7 +33,6 @@ public class Certificate {
     @NotNull
     private LocalDateTime createdAt;
 
-    @NotNull
     private LocalDateTime updatedAt;
 
     @ManyToOne

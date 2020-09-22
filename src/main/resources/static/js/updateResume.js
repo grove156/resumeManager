@@ -1,8 +1,5 @@
 
-    $('.modal-container').hide();
-    $('.modal1').hide();
-
-$(document).ready(function() { 
+$(document).ready(function(){
 
     
     $('.modal-container').hide();
@@ -13,7 +10,133 @@ $(document).ready(function() {
         $('.modal1').hide();
     });
 
+    $('#createEducation').click(function(){
+        $('.modal-container').show();
+        $('.education--creation').show();
+    });
+
+    $('#createExperience').click(function(){
+        $('.modal-container').show();
+        $('.experience--creation').show();
+    });
+
+    $('#createCertificate').click(function(){
+        $('.modal-container').show();
+        $('.certificate--creation').show();
+    });
+
+    $('#createCoverletter').click(function(){
+        $('.modal-container').show();
+        $('.coverletter--creation').show();
+    });
+
 });
+
+//reume title update
+function resumeTitleUpdate(userId, resumeId){
+    
+}
+
+
+//creation Ajax
+function createEducationAjax(resumeId){
+    var data = {
+        study_at: $('#studyAt--creation').val(),
+        major: $('#major--creation').val(),
+        start_date: $('#schoolStart--creation').val(),
+        end_date: $('#schoolEnd--creation').val()
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/resume/'+ resumeId + '/education',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function(){
+        alert('successfully created!');
+        $('.modal-container').hide();
+        $('.modal1').hide();
+        window.location.reload();
+    }).fail(function(error){
+        alert('create failed!');
+    });
+}
+
+function createExperienceAjax(resumeId){
+    var data = {
+        work_at: $('#workAt--creation').val(),
+        position: $('#position--creation').val(),
+        role: $('#role--creation').val(),
+        start_date: $('#companyStart--creation').val(),
+        end_date: $('#companyEnd--creation').val()
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/resume/'+ resumeId + '/experience',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function(){
+        alert('successfully created!');
+        $('.modal-container').hide();
+        $('.modal1').hide();
+        window.location.reload();
+    }).fail(function(error){
+        alert('create failed!');
+    });
+}
+
+function createCertificateAjax(resumeId){
+    var data = {
+        certificate_title: $('#certificateTitle--creation').val(),
+        score: $('#score--creation').val(),
+        valid_duration: $('#validDuration--creation').val(),
+        issued_date: $('#issueDate--creation').val(),
+    };
+
+    console.log(data);
+
+    $.ajax({
+        type: 'POST',
+        url: '/resume/'+ resumeId + '/certificate',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function(){
+        alert('successfully created!');
+        $('.modal-container').hide();
+        $('.modal1').hide();
+        window.location.reload();
+    }).fail(function(error){
+        alert('create failed!');
+    });
+}
+
+function createCoverletterAjax(resumeId){
+    var data = {
+        title: $('#coverletterTitle--creation').val(),
+        content:  $('.note-editable').text()
+    };
+
+    console.log(data);
+
+    $.ajax({
+        type: 'POST',
+        url: '/resume/'+ resumeId + '/coverletter',
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function(){
+        alert('successfully created!');
+        $('.modal-container').hide();
+        $('.modal1').hide();
+        window.location.reload();
+    }).fail(function(error){
+        alert('create failed!');
+    });
+}
 
 // Update Ajax
 function updateEducationAjax(resumeId){
