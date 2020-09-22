@@ -60,7 +60,7 @@ public class UserService {
                 .password(passwordEncoder.encode(userCreateRequest.getPassword()))
                 .name(userCreateRequest.getName())
                 .phoneNumber(userCreateRequest.getPhoneNumber())
-                .dateOfBirth(dateTransformer(userCreateRequest.getDateOfBirth()))
+                .dateOfBirth(userCreateRequest.getDateOfBirth())
                 .createdAt(LocalDateTime.now())
                 .enable(true)
                 .build();
@@ -93,7 +93,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(userUpdateRequest.getPassword()));
         user.setName(userUpdateRequest.getName());
         user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
-        user.setDateOfBirth(dateTransformer(userUpdateRequest.getDateOfBirth()));
+        user.setDateOfBirth(userUpdateRequest.getDateOfBirth());
 
         //save updated user properties
         User updatedUser = userRepository.save(user);
@@ -102,11 +102,11 @@ public class UserService {
     }
 
     //Transfer String dateOfBirth type to LocalDate
-    private LocalDate dateTransformer(String dateOfBirth){
-        Integer month = Integer.parseInt(dateOfBirth.substring(0,2));
-        Integer day = Integer.parseInt(dateOfBirth.substring(3,5));
-        Integer year = Integer.parseInt(dateOfBirth.substring(6,10));
-
-        return LocalDate.of(year,month,day);
-    }
+//    private LocalDate dateTransformer(String dateOfBirth){
+//        Integer month = Integer.parseInt(dateOfBirth.substring(0,2));
+//        Integer day = Integer.parseInt(dateOfBirth.substring(3,5));
+//        Integer year = Integer.parseInt(dateOfBirth.substring(6,10));
+//
+//        return LocalDate.of(year,month,day);
+//    }
 }

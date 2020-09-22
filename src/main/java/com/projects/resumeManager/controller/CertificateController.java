@@ -44,8 +44,7 @@ public class CertificateController {
         return certificateDetailResponse;
     }
 
-    @ResponseBody
-    @DeleteMapping("/resume/{resumeId}/education/{certificateId}")
+    @DeleteMapping("/resume/{resumeId}/certificate/{certificateId}")
     public String deleteCertificate(@PathVariable(value = "resumeId") Long resumeId,
                                                @PathVariable(value = "certificateId") Long certificateId){
         certificateService.deleteCertificate(resumeId, certificateId);

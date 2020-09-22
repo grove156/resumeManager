@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 
 @AllArgsConstructor
@@ -20,7 +21,7 @@ public class UserUpdateRequest {
     private String name;
 
     @NotEmpty
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @NotNull
     private String phoneNumber;

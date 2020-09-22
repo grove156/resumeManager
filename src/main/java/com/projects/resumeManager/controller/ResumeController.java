@@ -81,13 +81,13 @@ public class ResumeController {
     }
 
     @PatchMapping("/{userId}/resume/{resumeId}")
-    public void updateResume(@PathVariable(value = "userId") Long userId,
+    public ResumeDetailResponse updateResume(@PathVariable(value = "userId") Long userId,
                              @PathVariable(value = "userId") Long resumeId,
-                             @RequestBody String title,
-                             Model model){
+                             @RequestBody String title
+                             ){
         ResumeDetailResponse resumeDetailResponse = resumeService.updateResume(userId, resumeId, title);
 
-        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+        return resumeDetailResponse;
     }
 
     @ResponseBody

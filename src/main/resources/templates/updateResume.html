@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- 스타일관련 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
     <!-- 자바스크립트관련 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -50,8 +50,13 @@
     <!-- 한글관련 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/lang/summernote-ko-KR.min.js"></script>
 
+
+    <!-- COUSTOM JS -->
+    <script type="text/javascript" th:src="@{/js/updateResume.js}"></script>
+    <script type="text/javascript" src="../static/js/updateResume.js"></script>
 </head>
 <body>
+    
 <div class="body__container">
     <div class="modal-container">
         <div class="modal1 education--modal">
@@ -60,16 +65,20 @@
                 <input id="studyAt" type="text" class="input--text" placeholder="School">
                 <label for="major">Major</label>
                 <input id="major" type="text" class="input--text" placeholder="Major">
-                <label for="startDate">Start Date <i>*</i></label>
-                <input id="startDate" type="text" class="datepicker input--text" placeholder="Start date">
-                <label for="endDate">End Date</label>
-                <input id="endDate" type="text" class="datepicker input--text" placeholder="end date">
+                <label for="schoolStart">Start Date <i>*</i></label>
+                <input id="schoolStart" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="schoolEnd">End Date</label>
+                <input id="schoolEnd" type="text" class="datepicker input--text" placeholder="end date">
+                <input id="hiddenEducationId" type="hidden">
             </form>
-            <button id="updateEducation" class="btn btn--blue">update</button>
-            <button id="cancelEducation" class="btn">cancel</button>
+            <div class="button-box">
+                <button id="updateEducation" th:onclick="'updateEducationAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button id="cancelEducation" class="btn cancel">cancel</button>
+            </div>
+
         </div>
 
-        <div class="modal1 experience-modal">
+        <div class="modal1 experience--modal">
             <form>
                 <label for="workAt">Company <i>*</i></label>
                 <input id="workAt" type="text" class="input--text" placeholder="Company">
@@ -77,42 +86,50 @@
                 <input id="position" type="text" class="input--text" placeholder="Position">
                 <label for="role">Role</label>
                 <input id="role" type="text" class="input--text" placeholder="Role">
-                <label for="startDate">Start Date <i>*</i></label>
-                <input id="startDate" type="text" class="datepicker input--text" placeholder="Start date">
-                <label for="endDate">End Date</label>
-                <input id="endDate" type="text" class="datepicker input--text" placeholder="end date">
+                <label for="companyStart">Start Date <i>*</i></label>
+                <input id="companyStart" type="text" class="datepicker input--text" placeholder="Start date">
+                <label for="companyEnd">End Date</label>
+                <input id="companyEnd" type="text" class="datepicker input--text" placeholder="end date">
+                <input id="hiddenExperienceId" type="hidden">
             </form>
-            <button id="updateEducation" class="btn btn--blue">update</button>
-            <button id="cancelEducation" class="btn">cancel</button>
+            <div class="button-box">
+                <button id="updateExperience" th:onclick="'updateExperienceAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button id="cancelExperience" class="btn cancel">cancel</button>
+            </div>
         </div>
 
-        <div class="modal1 certificate-modal">
+        <div class="modal1 certificate--modal">
             <form>
                 <label for="certificateTitle">certificate title <i>*</i></label>
                 <input id="certificateTitle" type="text" class="input--text" placeholder="certificate title">
                 <label for="score">score(level)</label>
                 <input id="score" type="text" class="input--text" placeholder="score or level">
                 <label for="validDuration">valid duration</label>
-                <input id="role" type="text" class="input--text" placeholder="2 years">
+                <input id="validDuration" type="text" class="input--text" placeholder="2 years">
                 <label for="issueDate">issued date <i>*</i></label>
                 <input id="issueDate" type="text" class="datepicker input--text" placeholder="issued date">
+                <input id="hiddenCertificateId" type="hidden">
             </form>
             <div class="button-box">
-                <button id="updateEducation" class="btn btn--blue">update</button>
-                <button id="cancelEducation" class="btn">cancel</button>
+                <button id="updateCertificate" th:onclick="'updateCertificateAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button id="cancelCertificate" class="btn cancel">cancel</button>
             </div>
         </div>
 
-        <div class="modal1 coverletter-modal">
+        <div class="modal1 coverletter--modal">
             <form>
                 <label for="coverletterTitle">CV title <i>*</i></label>
-                <input id="certificateTitle" type="text" class="input--text" placeholder= "cover letter title">
+                <input id="coverletterTitle" type="text" class="input--text" placeholder= "cover letter title">
                 <label for="converletterContent">CV content <i>*</i></label>
                 <input id="converletterContent" type="text" class="input--text" placeholder="cover letter content">
+                <input id="hiddenCoverletterId" type="hidden">
             </form>
+            <div class="button-box">
+                <button id="updateCoverletter" th:onclick="'updateCoverletterAjax(\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
+                <button id="cancelCoverletter" class="btn cancel">cancel</button>
+            </div>
         </div>
     </div>
-
 
     <section class="section section--header">
         <div class="inner">
@@ -167,7 +184,7 @@
                                 <td th:text="${education.studyAt}"></td>
                                 <td th:text="${education.major}"></td>
                                 <td class="update-button-box">
-                                    <button class="btn update-button">update</button>
+                                    <button th:onclick="'updateEducation(\'' + ${education.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">update</button>
                                     <button th:onclick="'deleteEducation(\'' + ${education.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
                                 </td>
                             </tr>
@@ -196,7 +213,7 @@
                                 <td th:text="${experience.workAt}"></td>
                                 <td th:text="${experience.position}"></td>
                                 <td class="update-button-box">
-                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'updateExperience(\'' + ${experience.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-buttom">update</button>
                                     <button th:onclick="'deleteExperience(\'' + ${experience.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
                                 </td>
                             </tr>
@@ -225,7 +242,7 @@
                                 <td th:text="${certificate.certificateTitle}"></td>
                                 <td th:text="${certificate.score}"></td>
                                 <td class="update-button-box">
-                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'updateCertificate(\'' + ${certificate.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-buttom">update</button>
                                     <button th:onclick="'deleteCertificate(\'' + ${certificate.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
                                 </td>
                             </tr>
@@ -252,7 +269,7 @@
                             <tr th:if="${resume.coverletterList}" th:each="coverletter : ${resume.coverletterList}">
                                 <td th:text="${coverletter.title}"></td>
                                 <td class="update-button-box">
-                                    <button class="btn update-buttom">update</button>
+                                    <button th:onclick="'updateCoverletter(\'' + ${coverletter.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-buttom">update</button>
                                     <button th:onclick="'deleteCoverletter(\'' + ${coverletter.id} + '\',\'' + ${resume.id} + '\');'" class="btn update-button">delete</button>
                                 </td>
                             </tr>
@@ -274,15 +291,21 @@
     </section>
 </div>
 <script>
-    $( function() {
-      $( ".datepicker" ).datepicker();
-
-    } );
+    $.fn.datepicker.noConflict = function(){
+        $.fn.datepicker = old;
+        return this;
+    };
 
     $(document).ready(function(){
         $('#converletterContent').summernote({
             lang: 'ko-KR',
             height: 300,
+        });
+
+        $('.datepicker').each(function(){
+            $(this).datepicker({
+                dateFormat: "yy-mm-dd"
+            });
         });
     });
 </script>

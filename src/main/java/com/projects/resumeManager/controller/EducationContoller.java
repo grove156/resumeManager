@@ -11,20 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class EducationContoller {
 
     @Autowired
     EducationService educationService;
 
     @GetMapping("/resume/{resumeId}/education/{educationId}")
-    public void getEducation(@PathVariable(value = "resumeId") Long resumeId,
-                             @PathVariable(value = "educationId") Long educationId,
-                             Model model) throws Exception {
+    @ResponseBody
+    public EducationDetailResponse getEducation(@PathVariable(value = "resumeId") Long resumeId,
+                             @PathVariable(value = "educationId") Long educationId) throws Exception {
 
         EducationDetailResponse educationDetailResponse = educationService.getEduacation(resumeId, educationId);
 
-        model.addAttribute("educationDetailResponse",educationDetailResponse);
+        return educationDetailResponse;
     }
 
     @PostMapping("/resume/{resumeId}/education")
@@ -45,7 +45,6 @@ public class EducationContoller {
         return educationDetailResponse;
     }
 
-    @ResponseBody
     @DeleteMapping("/resume/{resumeId}/education/{educationId}")
     public String deleteEducation(@PathVariable(value = "resumeId") Long resumeId,
                                 @PathVariable(value = "educationId") Long educationId){
