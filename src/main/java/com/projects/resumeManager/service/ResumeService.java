@@ -104,6 +104,7 @@ public class ResumeService {
 
     public ResumeDetailResponse updateResume(Long userId, Long resumeId, String title) {
         //TODO: resumeNotFound exception
+        System.out.println(resumeId);
         Resume resume = resumeRepository.findById(resumeId).orElseThrow();
 
         resume.setResumeTitle(title);

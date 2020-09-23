@@ -38,6 +38,7 @@ public class UserService {
         //map found user with user detail response object
         UserDetailResponse userDetail = UserDetailResponse.builder()
                 .id(user.getId())
+                .email(user.getEmail())
                 .name(user.getName())
                 .phoneNumber(user.getPhoneNumber())
                 .dateOfBirth(user.getDateOfBirth())

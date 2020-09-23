@@ -34,9 +34,71 @@ $(document).ready(function(){
 
 //reume title update
 function resumeTitleUpdate(userId, resumeId){
-    
+    var title = $("#resume-title").val();
+
+    $.ajax({
+        type: 'PATCH',
+        url: '/' + userId +'/resume/'+resumeId,
+        dataType: 'text',
+        contentType: "application/json; charset=utf-8",
+        data: title
+    }).done(function(){
+        alert('successfully updated!');
+        window.location.reload();
+    }).fail(function(e){
+        alert("update failed!");
+    });
 }
 
+//resume photo create
+function createPhoto(resumeId){
+    var form = $('#fileForm')[0];
+    var formData = new FormData(form);
+    formData.append("multipartFile", $("#photo-upload")[0].files[0]);
+                
+
+    console.log(formData);
+
+    $.ajax({
+        type: "POST", 
+        enctype: 'multipart/form-data',  
+        url: '/resume/'+resumeId+'/photo', 
+        data: formData,  
+        processData: false,  
+        contentType: false,  
+        cache: false,
+    }).done(function(){
+        alert('successfully created!');
+        window.location.reload();
+    }).fail(function(e){
+        alert("create failed!");
+    });
+}
+
+//resume photo update
+function updatePhoto(resumeId, photoId){
+    var form = $('#fileForm')[0];
+    var formData = new FormData(form);
+    formData.append("multipartFile", $("#photo-upload")[0].files[0]);
+                
+
+    console.log(formData);
+
+    $.ajax({
+        type: "PATCH", 
+        enctype: 'multipart/form-data',  
+        url: '/resume/'+resumeId+'/photo/'+photoId, 
+        data: formData,  
+        processData: false,  
+        contentType: false,  
+        cache: false,
+    }).done(function(){
+        alert('successfully updated!');
+        window.location.reload();
+    }).fail(function(e){
+        alert("update failed!");
+    });
+}
 
 //creation Ajax
 function createEducationAjax(resumeId){

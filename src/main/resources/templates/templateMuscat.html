@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>musket</title>
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="../../static/css/templateMuscat.css">
+    <link rel="stylesheet" href="../../static/css/reset.css">
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
+    <link th:href="@{/css/templateMuscat.css}" rel="stylesheet" />
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Jqeury -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <!-- Jquery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+    <!-- pdf printing -->
+    <script src="../../static/js/html2canvas.js"></script>
+    <script src="../../static/js/jspdf.min.js"></script>
+    <script defer src="../../static/js/toPdf.js"></script>
+
+</head>
+<body>
+    <div class="section--btn">
+        <button id="savePdf" class="btn btn--red">Download as Pdf <i class="fa fa-file-pdf-o" aria-hidden="true"></i> </button>
+    </div>
+
+<div id="pdfDiv" class="body__container">
+    <div class="sidebar">
+        <div class="image-box">
+            <img th:if="${resume.photo}" th:src="@{/ProfileImg/{imgTitle}(imgTitle=${resume.photo.photoTitle})}" alt="">
+        </div>
+        <div class="personal-info-box">
+            
+            <div class="info-item">
+                <p><i class="fa fa-user" aria-hidden="true"></i> : </p>
+                <p th:if="${user.name}" th:text="${user.name}"></p>
+            </div>
+
+            <div class="info-item">
+                <p><i class="fa fa-phone" aria-hidden="true"></i> : </p>
+                <p th:if="${user.phoneNumber}" th:text="${user.phoneNumber}"></p>
+            </div>
+
+            <div class="info-item">
+                <p><i class="fa fa-envelope" aria-hidden="true"></i> : </p>
+                <p th:if="${user.email}" th:text="${user.email}"></p>
+            </div>
+
+            <div class="info-item">
+                <p>Date of Birth: </p>
+                <p th:if="${user.dateOfBirth}" th:text="${user.dateOfBirth}"></p>
+            </div>
+
+        </div>
+    </div>
+    <div class="main">
+        <div class="title-box">
+            <h1 th:if="${user.name}" th:text="${user.name}"></h1>
+        </div>
+
+        <div class="education-box">
+            <h2>Educations</h2>
+                <div class="education-item" th:if="${resume.educationList}" th:each="education : ${resume.educationList}">
+                    <div class="name-group">
+                        <p><i class="fa fa-graduation-cap" aria-hidden="true"></i><span th:if="${resume.educationList}" th:text="${education.studyAt}"></span>
+                            - <i class="fa fa-book" aria-hidden="true"></i> <span th:if="${resume.educationList}" th:text="${education.major}"></span></p>
+                    </div>
+                    <div class="period-group">
+                        <p> <span th:if="${education.startDate}" th:text="${education.startDate}"></span>
+                            - <span th:if="${education.endDate}" th:text="${education.endDate}"></span>
+                        </p>
+                    </div>
+            </div>
+                
+        </div>
+
+        <div class="experience-box">
+            <h2>Experiences</h2>
+            <div class="experience-item" th:if="${resume.experienceList}" th:each="experience : ${resume.experienceList}">
+                <div class="name-group">
+                    <p><i class="fa fa-building" aria-hidden="true"></i> <span th:if="${experience.workAt}" th:text="${experience.workAt}"></span>
+                        - <i class="fa fa-briefcase" aria-hidden="true"></i></i>  <span th:if="${experience.position}" th:text="${experience.position}"></span></p>
+                    <p>Role: <span th:if="${experience.position}" th:text="${experience.position}"></span></p>
+                </div>
+                <div class="period-group">
+                    <p><span th:if="${experience.startDate}" th:text="${experience.startDate}"></span>
+                         - <span th:if="${experience.endDate}" th:text="${experience.endDate}"></span></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="certificate-box">
+            <h2>Certificates</h2>
+            <div class="certificate-item" th:if="${resume.certificateList}" th:each="certificate : ${resume.certificateList}">
+                <div class="name-group">
+                    <p><i class="fa fa-id-card-o" aria-hidden="true"></i>   
+                        <span th:if="${certificate.certificateTitle}" th:text="${certificate.certificateTitle}"></span> 
+                        score: <span th:if="${certificate.score}" th:text="${certificate.score}"></span>
+                     </p>
+                </div>
+                <div class="period-group">
+                    <p>issued at: <span th:if="${certificate.issuedDate}" th:text="${certificate.issuedDate}"></span></p>
+                    <p>duration: <span th:if="${certificate.validDuration}" th:text="${certificate.validDuration}"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="coverletter-box">
+            <h2>Cover letter</h2>
+            <div class="coverletter-item" th:if="${resume.coverletterList}" th:each="coverletter : ${resume.coverletterList}">
+                <h3 th:if="${coverletter.title}" th:text="${coverletter.title}"></h3>
+                <p th:if="${coverletter.content}" th:text="${coverletter.content}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

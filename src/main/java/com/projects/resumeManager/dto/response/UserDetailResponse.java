@@ -21,6 +21,8 @@ public class UserDetailResponse {
 
     private Long id;
 
+    private String email;
+
     private String name;
 
     private LocalDate dateOfBirth;

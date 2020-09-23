@@ -108,7 +108,7 @@ public class PhotoService {
         UUID uuid = UUID.randomUUID();
         File uploadPath = new File(baseDir);
 
-        String uploadFileName = uploadFile.getOriginalFilename()+"_"+uuid.toString();
+        String uploadFileName = uuid.toString()+"_"+uploadFile.getOriginalFilename();
         String uploadFileSize = fileSizeToMb(uploadFile.getSize());
 
         File saveFile = new File(uploadPath, uploadFileName);

@@ -204,7 +204,7 @@
         <div class="inner">
             <header class="header">
                 <ul class="nav">
-                    <li ><a class="nav__item nav-user" th:href="@{#}" th:text="${user.name}"></a></li>
+                    <li ><a class="nav__item nav-user" th:href="@{/user/{id}(id=${user.id})}" th:text="${user.name}"></a></li>
                     <li ><a class="nav__item nav__dashboard" th:href="@{/dashboard}">Dashboard</a></li>
                     <li ><a class="nav__item nav-logout" th:href="@{/logout}">Logout</a></li>
                 </ul>
@@ -222,7 +222,7 @@
                 
                 <div class="resume-items title-group">
                     <h1 class="labels">Resume title :</h1>
-                    <input type="text" class="input--text" th:value="${resume.title}">
+                    <input id="resume-title" type="text" class="input--text" th:value="${resume.title}">
                     <div class="btn-box">
                         <button id="resumeTitleUpdate" th:onclick="'resumeTitleUpdate(\'' + ${user.id} + '\',\'' + ${resume.id} + '\');'" class="btn btn--blue">update</button>
                     </div>
@@ -231,12 +231,15 @@
                 <div class="resume-items photo-group">
                     <h1 class="labels">Profile photo :</h1>
                     <div class="image-box">
-                        <img th:if="${resume.photo}" th:src="@{/img/{imgTitle}(imgTitle=${resume.photo.photoTitle})}" alt="profile" class="profile">
+                        <img th:if="${resume.photo}" th:src="@{/ProfileImg/{imgTitle}(imgTitle=${resume.photo.photoTitle})}" alt="profile" class="profile">
                         <p th:unless="${resume.photo}">no profile image!</p>
                     </div>
-                    <input id="photo-upload"type="file">
+                    <form id="fileForm" enctype="multipart/form-data">
+                        <input id="photo-upload" type="file">
+                    </form>
                     <div class="btn-box">
-                        <button class="btn btn--blue">update</button>
+                        <button th:if="${resume.photo}" th:onclick="'updatePhoto(\'' + ${resume.id} + '\',\'' + ${resume.photo.id} + '\');'" class="btn btn--blue">update</button>
+                        <button th:unless="${resume.photo}" th:onclick="'createPhoto(\'' + ${resume.id} + '\');'" class="btn btn--blue">add</button>
                     </div>
                 </div>
 

@@ -5,7 +5,9 @@ import com.projects.resumeManager.domain.entity.Resume;
 import com.projects.resumeManager.domain.entity.User;
 import com.projects.resumeManager.dto.SessionUser;
 import com.projects.resumeManager.dto.response.ResumeDetailResponse;
+import com.projects.resumeManager.dto.response.UserDetailResponse;
 import com.projects.resumeManager.service.ResumeService;
+import com.projects.resumeManager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +28,9 @@ public class ResumeController {
     @Autowired
     ResumeService resumeService;
 
+    @Autowired
+    UserService userService;
+
     //for update
     @GetMapping("/resume/{resumeId}")
     public String getResumeDetailForUpdate(@PathVariable Long resumeId,
@@ -39,6 +44,8 @@ public class ResumeController {
 
         ResumeDetailResponse resumeDetailResponse = resumeService.getResumeDetail(resumeId);
 
+        System.out.println(resumeDetailResponse);
+
         model.addAttribute("resume", resumeDetailResponse);
         model.addAttribute("user", sessionUser);
 
@@ -48,13 +55,23 @@ public class ResumeController {
     //for display
     @GetMapping("/resume/{resumeId}/{templateId}")
     public String getResume(@PathVariable Long resumeId,
-                          @PathVariable Long templateId,
+                          @PathVariable String templateId,
                           Model model) throws Exception {
+        SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
+        if(sessionUser == null){
+            //TODO: replace with SessionExpiredException
+            throw new Exception();
+        }
+
         ResumeDetailResponse resumeDetailResponse = resumeService.getResumeDetail(resumeId);
+        UserDetailResponse userDetailResponse = userService.getUserDetail(sessionUser.getId());
 
-        model.addAttribute("resumeDetailResponse", resumeDetailResponse);
+        model.addAttribute("resume", resumeDetailResponse);
+        model.addAttribute("user",userDetailResponse);
 
-        return "";//TODO:create "/resume/{resumeId}/{templateID}" template with resume detail data
+        System.out.println(resumeDetailResponse.getEducationList());
+
+        return "template"+templateId;
     }
 
     @GetMapping("/{userId}/resume")
@@ -80,9 +97,10 @@ public class ResumeController {
         return resumeDetailResponse;
     }
 
+    @ResponseBody
     @PatchMapping("/{userId}/resume/{resumeId}")
     public ResumeDetailResponse updateResume(@PathVariable(value = "userId") Long userId,
-                             @PathVariable(value = "userId") Long resumeId,
+                             @PathVariable(value = "resumeId") Long resumeId,
                              @RequestBody String title
                              ){
         ResumeDetailResponse resumeDetailResponse = resumeService.updateResume(userId, resumeId, title);

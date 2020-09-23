@@ -5,10 +5,7 @@ import com.projects.resumeManager.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -25,16 +22,17 @@ public class PhotoController {
         return photoDetailResponse;
 
     }
-
+    @ResponseBody
     @PostMapping("resume/{resumeId}/photo")
     public PhotoDetailResponse createPhoto(@PathVariable(value="resumeId") Long resumeId,
-                            MultipartFile multipartFile,
-                            Model model){
+                            MultipartFile multipartFile){
+
         PhotoDetailResponse photoDetailResponse = photoService.createPhoto(resumeId ,multipartFile);
 
         return photoDetailResponse;
     }
 
+    @ResponseBody
     @PatchMapping("resume/{resumeId}/photo/{photoId}")
     public PhotoDetailResponse updatePhoto(@PathVariable(value="resumeId") Long resumeId,
                             @PathVariable(value="photoId") Long photoId,
