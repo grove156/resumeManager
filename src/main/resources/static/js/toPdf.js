@@ -1,7 +1,7 @@
 
     $(document).ready(function() {
         $('#savePdf').click(function() { // pdf저장 button id
-            
+            console.log("HI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             html2canvas($('#pdfDiv')[0]).then(function(canvas) { //저장 영역 div id
             
             // 캔버스를 이미지로 변환
@@ -30,7 +30,7 @@
             // 파일 저장
             doc.save('file-name.pdf');
     
-              
+            window.location.href='/dashboard';
         });
     
         });

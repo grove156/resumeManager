@@ -55,7 +55,7 @@ public class ResumeController {
     //for display
     @GetMapping("/resume/{resumeId}/{templateId}")
     public String getResume(@PathVariable Long resumeId,
-                          @PathVariable String templateId,
+                            @PathVariable String templateId,
                           Model model) throws Exception {
         SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         if(sessionUser == null){

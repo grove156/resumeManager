@@ -23,8 +23,8 @@
     <meta property="twitter:url" content="#">
     
     <!--Custom CSS-->
-    <!-- <link rel="stylesheet" href="../static/css/reset.css">
-    <link rel="stylesheet" href="../static/css/dashboard.css"> -->
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/dashboard.css}" rel="stylesheet" />
 
@@ -40,11 +40,56 @@
     <!-- Jquery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
+    <!-- Jqeuery bx slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
     <!-- ajax & functions -->
     <script type="text/javascript" th:src="@{/js/dashboard.js}"></script>
 </head>
 <body>
 <div class="body__container">
+    <div class="modal--container">
+        <div class="modal1">
+            <div class="slider-group">
+                <ul class="bxslider">
+                    <li>
+                        <!--src="../static/img/muscat.jpg" -->
+                        <img th:src="@{/img/muscat.jpg}" alt="image" title="image">
+                        <label class="checkbox-label label--muscat" for="muscat">
+                            <input class="input--checkbox" id="muscat" type="radio" name="template" value="Muscat" checked>
+                            <div class="radio--radio"></div>
+                            Muscat
+                        </label>
+                    </li>
+                    <li>
+                        <!-- src="../static/img/navy.jpg" -->
+                        <img th:src="@{/img/navy.jpg}" alt="image" title="image">
+                        <label class="checkbox-label label--navy" for="navy">
+                            <input class="input--checkbox" id="navy" type="radio" name="template" value="Navy">
+                            <div class="radio--radio"></div>
+                            Navy
+                        </label>
+                    </li> 
+                    <li>
+                        <!-- src="../static/img/carrot.jpg" -->
+                        <img th:src="@{/img/carrot.jpg}" alt="image" title="image">
+                        <label class="checkbox-label label--carrot" for="carrot">
+                            <input class="input--checkbox" id="carrot" type="radio" name="template" value="Carrot">
+                            <div class="radio--radio"></div>
+                            Carrot
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <input id="templateResumeId" type="hidden" value="">
+            <div class="button-box">
+                <button class="btn btn--blue" th:onclick="'getPdfTemplate();'">download <i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
+                <button id="cancel" class="btn">cancel</button>
+            </div>
+        </div>
+    </div>
     <section class="section section--header">
         <div class="inner">
             <header class="header">
@@ -68,15 +113,16 @@
                 </div>
 
                 <div th:if="${resumeList}" class="resume-lists">
-                    <!-- fix it to iterate later -->
+                    
                     <div th:each="resume : ${resumeList}" class="resume-item">
                         <div class="resume-title">
                             <p th:text="${resume.title}"></p>
                         </div>
                         <div class="resume-image">
-                            <a th:href="@{/resume/{resumeId}(resumeId=${resume.id})}">
-                                <img class="img" src="img/resume-img4.png" alt="iamge">
-                            </a>
+                            <!-- <a th:href="@{/resume/{resumeId}(resumeId=${resume.id})}"> -->
+
+                                <img class="img" th:onclick="'getTemplate(\'' + ${resume.id} + '\');'" src="img/resume-img4.png" alt="iamge">
+                            
                         </div>
                         <div class="button-group">  
                             <button id="update-button" th:onclick="'window.location.href = \'' + @{/resume/{resumeId}(resumeId=${resume.id})} + '\''" class="btn">Update</button>

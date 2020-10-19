@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrot</title>
     <!--Custom CSS-->
-    <link rel="stylesheet" href="../../static/css/reset.css">
-    <link rel="stylesheet" href="../../static/css/templateCarrot.css">
+    <!-- <link rel="stylesheet" href="../../static/css/reset.css">
+    <link rel="stylesheet" href="../../static/css/templateCarrot.css"> -->
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <link th:href="@{/css/templateCarrot.css}" rel="stylesheet" />
 
@@ -23,9 +23,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
     <!-- pdf printing -->
-    <script src="../../static/js/html2canvas.js"></script>
-    <script src="../../static/js/jspdf.min.js"></script>
-    <script defer src="../../static/js/toPdf.js"></script>
+    <script th:src="@{/js/html2canvas.js}"></script>
+    <script th:src="@{/js/jspdf.min.js}"></script>
+
 </head>
 <body>
 <div class="body__container">
@@ -36,10 +36,10 @@
     <div id="pdfDiv" class="root">
         <div class="section--title">
             <div class="image-box">
-                <img src="../../static/img/yc1.png" alt="">
+                <img th:if="${resume.photo}" th:src="@{/ProfileImg/{imgTitle}(imgTitle=${resume.photo.photoTitle})}" alt="">
             </div>
             <div class="title-box">
-                <h1>Myeongkeun Kim</h1>
+                <h1 th:if="${user.name}" th:text="${user.name}"></h1>
             </div>
         </div>
 
@@ -48,22 +48,22 @@
             <div class="personal-info-box">
                 <div class="info-item">
                     <p><i class="fa fa-user" aria-hidden="true"></i> : </p>
-                    <p>Myeongkeun Kim</p>
+                    <p th:if="${user.name}" th:text="${user.name}"></p>
                 </div>
     
                 <div class="info-item">
                     <p><i class="fa fa-phone" aria-hidden="true"></i> : </p>
-                    <p>010-1111-2222</p>
+                    <p th:if="${user.phoneNumber}" th:text="${user.phoneNumber}"></p>
                 </div>
     
                 <div class="info-item">
                     <p><i class="fa fa-envelope" aria-hidden="true"></i> : </p>
-                    <p>grove156@gmail.com</p>
+                    <p th:if="${user.email}" th:text="${user.email}"></p>
                 </div>
     
                 <div class="info-item">
                     <p>Date of Birth: </p>
-                    <p>1989/07/08</p>
+                    <p th:if="${user.dateOfBirth}" th:text="${user.dateOfBirth}"></p>
                 </div>
             </div>
         </div>
@@ -72,37 +72,29 @@
             <div class="main-content">
                 <div class="education-box">
                     <h2>Educations</h2>
-                    <div class="items education-item">
+                    <div class="items education-item" th:if="${resume.educationList}" th:each="education : ${resume.educationList}">
                         <div class="name-group">
-                            <p><i class="fa fa-graduation-cap" aria-hidden="true"></i> Swinburne University of Technology 
-                                - <i class="fa fa-book" aria-hidden="true"></i> Computer Science</p>
+                            <p><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span th:if="${resume.educationList}" th:text="${education.studyAt}"></span>
+                                - <i class="fa fa-book" aria-hidden="true"></i>  <span th:if="${resume.educationList}" th:text="${education.major}"></span></p>
                         </div>
                         <div class="period-group">
-                            <p>2016/02/03 - 2020/02/03</p>
-                        </div>
-                    </div>
-        
-                    <div class="items education-item">
-                        <div class="name-group">
-                            <p><i class="fa fa-graduation-cap" aria-hidden="true"></i> Inhun High school 
-                                - <i class="fa fa-book" aria-hidden="true"></i> normal</p>
-                        </div>
-                        <div class="period-group">
-                            <p>2016/02/03 - 2020/02/03</p>
+                            <p><span th:if="${education.startDate}" th:text="${education.startDate}"></span>
+                                 - <span th:if="${education.endDate}" th:text="${education.endDate}"></span></p>
                         </div>
                     </div>
                 </div>
         
                 <div class="experience-box">
                     <h2>Experiences</h2>
-                    <div class="items experience-item">
+                    <div class="items experience-item" th:if="${resume.experienceList}" th:each="experience : ${resume.experienceList}">
                         <div class="name-group">
-                            <p><i class="fa fa-building" aria-hidden="true"></i> Shujinko Ramen
-                                - <i class="fa fa-briefcase" aria-hidden="true"></i></i> Manager</p>
-                            <p>Role: making ramen, rostering, managing stock etc</p>
+                            <p><i class="fa fa-building" aria-hidden="true"></i> <span th:if="${experience.workAt}" th:text="${experience.workAt}"></span>
+                                - <i class="fa fa-briefcase" aria-hidden="true"></i></i> <span th:if="${experience.position}" th:text="${experience.position}"></span></p>
+                            <p>Role: <span th:if="${experience.role}" th:text="${experience.role}"></span></p>
                         </div>
                         <div class="period-group">
-                            <p>2016/02/03 - 2020/02/03</p>
+                            <p><span th:if="${experience.startDate}" th:text="${experience.startDate}"></span>
+                                 - <span th:if="${experience.endDate}" th:text="${experience.endDate}"></span></p>
                         </div>
                     </div>
                 </div>
@@ -110,30 +102,28 @@
         
                 <div class="certificate-box">
                     <h2>Certificates</h2>
-                    <div class="items certificate-item">
+                    <div class="items certificate-item" th:if="${resume.certificateList}" th:each="certificate : ${resume.certificateList}">
                         <div class="name-group">
-                            <p><i class="fa fa-id-card-o" aria-hidden="true"></i>   TOEIC score: 980</p>
+                            <p><i class="fa fa-id-card-o" aria-hidden="true"></i>   <span th:if="${certificate.certificateTitle}" th:text="${certificate.certificateTitle}"></span> 
+                                 score: <span th:if="${certificate.score}" th:text="${certificate.score}"></span></p>
                         </div>
                         <div class="period-group">
-                            <p>issued at: 2020/01/01</p>
-                            <p>duration: 2years</p>
+                            <p>issued at: <span th:if="${certificate.issuedDate}" th:text="${certificate.issuedDate}"></span></p>
+                            <p>duration: <span th:if="${certificate.validDuration}" th:text="${certificate.validDuration}"></span></p>
                         </div>
                     </div>
                 </div>
         
                 <div class="coverletter-box">
                     <h2>Cover letter</h2>
-                    <div class="items coverletter-item">
-                        <h3>This is who I am!!</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.
-                            Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.
-                            Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.Lorem ipsum dolor sit amet, consectetur ae. Sed maximus cursus condimentum. Etiam pellentesque pharetra eleifend. Quisque eget leo turpis.
-    
-                        </p>
+                    <div class="items coverletter-item" th:if="${resume.coverletterList}" th:each="coverletter : ${resume.coverletterList}">
+                        <h3 th:if="${coverletter.title}" th:text="${coverletter.title}"></h3>
+                        <p th:if="${coverletter.content}" th:text="${coverletter.content}"></p>
                     </div>
                 </div>
         </div>
     </div>
 </div>
+<script type="text/javascript" th:src="@{/js/toPdf.js}"></script>
 </body>
 </html>
