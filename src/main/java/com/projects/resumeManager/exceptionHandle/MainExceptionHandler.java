@@ -15,6 +15,7 @@ public class MainExceptionHandler {
     @Autowired
     HttpSession httpSession;
 
+    //exception handler
     @ExceptionHandler(value = {ResumeListNoExistException.class})
     public String handleResumeListException(ResumeListNoExistException e,
                                             Model model){
