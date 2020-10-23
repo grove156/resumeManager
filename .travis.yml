@@ -1,0 +1,20 @@
+language: java
+jdk:
+  - openjdk11
+
+branches:
+  only:
+    - master
+
+#travis server의 홈
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
+script: "./gradlew clean build"
+
+#CI 실행완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - grove156@gmail.com
