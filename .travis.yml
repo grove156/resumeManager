@@ -21,4 +21,19 @@ notifications:
 
 #리눅스 ./gradlew 에 접급할 수 있는 권한
 before_install:
-  - chomod +x gradlew
+  - chmod +x gradlew
+
+before_deploy:
+  - zip -r resume-manager *
+  - mkdir -p deploy
+  - mv resume-manager.zip deploy/resume-manager.zip
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY #트레비스 설정값
+    secret_access_key: $AWS_SECRET_KEY #트래비스 설정값
+    bucket: rm-build #s3 버킷이름
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private #zip파일 접근을 private으로
+    local_dir: deploy #before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
