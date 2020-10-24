@@ -41,6 +41,7 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY #트레비스 설정값
     secret_access_key: $AWS_SECRET_KEY #트래비스 설정값
+    bucket: rm-build #s3 버킷이름
     key: resume-manager.zip
     bundle_type: zip
     application: resume-manager
